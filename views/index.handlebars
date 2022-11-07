@@ -1,0 +1,33 @@
+
+<main>
+    <div id="formulario">
+        <figure id = "logo" >
+            <img src="../imagens/Logo1.png">
+        </figure>
+        <form action="../index" method="post">
+            <div class="campo">
+                <span>Login</span>
+                <input type="text" name="usuario" placeholder="login" id="login" required>
+            </div>
+            <div class="campo">
+                <span>Senha</span>
+                <input type="password" name="senha"  placeholder="" id="senha" required minlength="6">
+            </div>
+            <a href="" id="EsqueceuSenha">Esqueceu sua senha?</a>
+            <button type="submit" value="Logar" class="logar">Logar</button>
+        </form>
+    </div>
+</main>
+<!--<script src="Js/script.js"></script>-->
+
+<script>
+
+    let EsqueceuSenha = document.querySelector('#EsqueceuSenha');
+    EsqueceuSenha.addEventListener("click", function(e){
+	e.preventDefault();
+    let login = $('#login').val();
+	confirm("deseja mesmo isso?" + login)
+    window.location.href = ('/enviaEmail/'+login)
+})  
+
+</script>

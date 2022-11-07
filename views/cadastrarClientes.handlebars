@@ -1,0 +1,83 @@
+<main id="cliente">
+    <div class="caixa">
+        <h1>Cadastrar Cliente</h1>
+        <form class="cadastro" action="../clientes/addCliente" method="post">
+            <div class="campos">
+                <label>Código:</label>
+                <input type="number" name="codigo" class="cod" value="default" disabled>
+            </div>
+            <div class="campos">
+                <label>Nome Completo:</label>
+                <input type="text" name="nome" class="nmPessoa">
+            </div>
+            <div class="campos">
+                <label>CPF:</label>
+                <input type="text" name="cpf" id="cpf" class="docPessoa" maxlength="14">
+            </div>
+            <div class="campos">
+                <label>RG:</label>
+                <input type="text" name="rg" id="rg" class="docPessoa" maxlength="12">
+            </div>
+            <div class="campos">
+                <label>Data Nascimento:</label>
+                <input type="date" name="dtdNascimento" class="dtdNasc">
+            </div>
+            <div class="campos">
+                <label>Endereço:</label>
+                <input type="text" name="endereco" class="endereco">
+            </div>
+            <div class="campos">
+                <label>Nº:</label>
+                <input type="text" name="numEnd" class="numEnd" maxlength="10">
+            </div>
+            <div class="campos">
+                <label>Bairro:</label>
+                <input type="text" name="bairro" class="baiCid">
+            </div>
+            <div class="campos">
+                <label>Cidade:</label>
+                <input type="text" name="cidade" class="cidade">
+            </div>
+            <div class="campos">
+                <label>Telefone:</label>
+                <input type="text" name="telefone" class="tel" maxlength="14">
+            </div>
+            <div class="campos">
+                <label>E-mail:</label>
+                <input type="email" name="email" class="email">
+            </div>
+            <div class = "Botoes">
+                <input type="submit" value="Cadastrar" class="cadastrar"></input>
+                <input type="submit" value="Cancelar" class="cancelar"></input>
+            </div>    
+        </form>
+    </div>
+</main>
+<script>
+    $('#rg').mask('##.###.###-#',{reverse:true});
+    $('#cpf').mask('###.###.###-##',{reverse:true});
+    $('.tel').mask('(##)#####-####');
+
+
+    var cadastrar = document.querySelector('.cadastrar');
+    cadastrar.addEventListener("click", ()=>{
+        alert('Cliente Cadastrado com Sucesso!');
+    });
+
+    var cancel = document.querySelector('.cancelar');
+    cancel.addEventListener("click", function(e){
+        e.preventDefault();
+        cancelar();
+        console.log('testando botão cancelar')
+    });
+
+
+    function cancelar(){
+        var cancel = confirm('Deseja mesmo cancelar?\nCaso sim, perderá todos os dados não salvos')
+        
+        if(cancel){
+            location.href = '../clientes'; 
+        }
+        
+    }
+</script>

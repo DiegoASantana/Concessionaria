@@ -1,0 +1,39 @@
+<main id="index">
+    <div class="caixa">
+        
+        <section class="Botoes">
+            <a href="clientes">Clientes</a>
+            <a href="funcionarios" id="func">Funcionários</a>
+            <a href="estoque/consultarVeiculos">Estoque</a>
+            <a href="vendas">Vendas</a>
+        </section>
+
+        <figure id="logo1">
+            <img src="../imagens/Logo1.PNG">
+        </figure>
+
+        <section id="BotoesBaixo">
+            <a href="../index/logout" id="sair" onclick="limpaSessionStorage()">Sair</a>
+        </section>
+    </div>
+</main>
+
+<script>
+    {{#each result}}
+    let idcargo = {{FUN_IdCargo}};
+    let idfunc = {{FUN_IdFuncionario}};
+    sessionStorage.setItem("IdCargo", idcargo)
+    sessionStorage.setItem("IdFuncionario", idfunc)
+    {{/each}}
+    let dadosCargo = sessionStorage.getItem('IdCargo');
+    if(dadosCargo < 4){
+        document.querySelector('#func').style.display = "none";
+        document.querySelector('.Botoes').style.marginTop = "70px"
+    }
+
+    function limpaSessionStorage(){
+        sessionStorage.clear();
+    }
+    
+</script>
+

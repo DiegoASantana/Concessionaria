@@ -1,0 +1,68 @@
+<main id="fornecedores">
+    <div class="caixa">
+        <h1>Cadastrar Fornecedores</h1>
+        <form class="cadastro">
+            <div class="campos">
+                <label>Cód. Fornecedor</label>
+                <input type="number" name="codigo" class="codForn" disabled>
+            </div>
+            <div class="campos">
+                <label>Empresa:</label>
+                <input type="text" name="nome" class="nmEmp">
+            </div>
+            <div class="campos">
+                <label>CNPJ:</label>
+                <input type="number" name="CPF" class="cnpj">
+            </div>
+            <div class="campos">
+                <label>Telefone:</label>
+                <input type="number" name="telefone" class="tel">
+            </div>
+            <div class="campos">
+                <label>E-mail:</label>
+                <input type="email" name="email" class="email">
+            </div>
+            <div class="campos">
+                <label>Endereço:</label>
+                <input type="text" name="endereço" class="endereco">
+            </div>
+            <div class="campos">
+                <label>Nº:</label>
+                <input type="number" name="num" class="numEnd">
+            </div>
+            <div class="campos">
+                <label>Bairro:</label><input type="text" name="bairro" class="baiCid">
+            </div>
+            <div class="campos">
+                <label>Cidade:</label>
+                <input type="text" name="bairro" class="baiCid">
+            </div>
+            <div class="campos">
+                <label>Transportadora:</label>
+                <input type="text" name="transporatadora" class="transp">
+            </div>
+            <div class = "Botoes">
+                <input type="submit" value="Cadastrar" class="cadastrar"></input>
+                <input type="submit" value="Cancelar" class="cancelar"></input>
+            </div>    
+        </form>
+    </div>
+</main>
+<script>
+    var cancel = document.querySelector('.cancelar');
+    cancel.addEventListener("click", function(e){
+        e.preventDefault();
+        cancelar();
+        console.log('testando botão cancelar')
+    });
+
+
+    function cancelar(){
+        var cancel = confirm('Deseja mesmo cancelar?\nCaso sim, perderá todos os dados não salvos')
+        
+        if(cancel){
+            location.href = 'home'; 
+        }
+        
+    }
+</script>

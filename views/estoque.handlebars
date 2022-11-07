@@ -1,0 +1,245 @@
+<main id="estoque">
+    <div class="caixa">
+        <h1>Veículo</h1>
+        {{#each veiculos}}
+
+        
+        <form class="cadastro">
+            <div class="campos">
+                <label>Cód. Veiculo:</label>
+                <input type="number" name="codigo" class="codVei" value="{{VEI_IdVeiculo}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Marca:</label>
+                <select name = "marca" class="marca" disabled>
+                    <option value="{{VEI_Marca}}">{{VEI_Marca}}</option>
+                    
+                </select>
+            </div>
+            <div class="campos">
+                <label>Modelo:</label>
+                <select name = "modelo" class="modelo" disabled>
+                    <option value="{{VEI_Modelo}}">{{VEI_Modelo}}</option>
+                    
+                </select>
+            </div>
+            <div class="campos">
+                <label>Renavam:</label>
+                <input type="number" name="renavam" class="renavam" value="{{VEI_NumRenavam}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Placa:</label>
+                <input type="text" name="placa" class="placa" value="{{VEI_Placa}}" disabled>
+            </div>
+            <div class="campos">
+                <section class="section">
+                    <label>Cor:</label>
+                    <select name = "cor" class="cor" disabled>
+                        <option value="{{VEI_Cor}}">{{VEI_Cor}}</option>
+                        <option value="AMARELO">AMARELO</option>
+                        <option value="AZUL">AZUL</option>
+                        <option value="BRANCO">BRANCO</option>
+                        <option value="GRAFITI">GRAFITI</option>
+                        <option value="MARROM">MARROM</option>
+                        <option value="PRATA">PRATA</option>
+                        <option value="PRETO">PRETO</option>
+                        <option value="ROSA">ROSA</option>
+                        <option value="ROXO">ROXO</option>
+                        <option value="VERDE">VERDE</option>
+                        <option value="VERMELHO">VERMELHO</option>
+                        
+                    </select>
+                </section>
+            </div>
+            <div class="campos">
+                <section class="section">
+                    <label>Ano:</label>
+                    <select name = "ano" class="ano" disabled>
+                        <option value="{{VEI_Ano}}">{{VEI_Ano}}</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </section>
+            </div>
+            
+            <div class="situacao">
+                <input type="radio" name="situacao" class="sit1" required="required" value="N" disabled />Novo
+                <input type="radio" name="situacao" class="sit2" required="required" value="S" disabled /> Seminovo
+            </div>
+            <div class="campos">
+                <label>Km:</label>
+                <input type="number" name="km" class="km" value="{{VEI_Km}}" disabled>
+            </div>
+            <div class="campos">
+                <label class="comb">Combustível:</label>
+                <select name = "combustivel" class="combustivel" disabled>
+                    <option value="{{VEI_Combustivel}}">{{VEI_Combustivel}}</option>
+                    
+                </select>
+            </div>
+            <div class="campos">
+                <section class="sectionValor">
+                    <label>Valor:</label>
+                    <input type="text" name="valor" class="valor" value="{{VEI_Valor}}" disabled>
+                </section>
+            </div>
+            <div class="campos">
+                <div class="textarea">
+                    <label>Observações:</label>
+                    <textarea placeholder="{{VEI_Observacoes}}" class="obser" disabled></textarea>
+                </div>
+            </div>
+            
+            <div class = "Botoes">
+                <input type="submit" value="Alterar" class="alterarVei"></input>
+                <input type="submit" value="Excluir" class="excluirVei"></input>
+                <input type="submit" value="Voltar" class="voltar"></input>
+            </div>    
+        </form>
+        
+        
+    </div>
+</main>
+
+<script>
+    
+    var status = {{VEI_Novo}};
+	if(status == 1){
+       document.querySelector('.sit1').checked = true;
+    }else{
+        document.querySelector('.sit2').checked = true;
+    }
+
+    // BOTÃO ALTERAR
+
+    var alterarVeiculo = document.querySelector(".alterarVei");
+    alterarVeiculo.addEventListener("click", function(e){
+        e.preventDefault();
+        alterarVei();
+        criarBotoes();
+    })
+
+
+    function alterarVei(){
+	
+		console.log ("testando")
+		document.querySelector(".marca").removeAttribute("disabled");
+		document.querySelector(".modelo").removeAttribute("disabled");
+		document.querySelector(".renavam").removeAttribute("disabled");
+		document.querySelector(".placa").removeAttribute("disabled");
+		document.querySelector(".cor").removeAttribute("disabled");
+		document.querySelector(".ano").removeAttribute("disabled");
+		document.querySelector(".sit1").removeAttribute("disabled");
+		document.querySelector(".sit2").removeAttribute("disabled");
+		document.querySelector(".km").removeAttribute("disabled");
+		document.querySelector(".combustivel").removeAttribute("disabled");
+		document.querySelector(".valor").removeAttribute("disabled");
+		document.querySelector(".obser").removeAttribute("disabled");
+		document.querySelector(".excluirVei").remove();
+		document.querySelector(".alterarVei").remove();
+		document.querySelector(".voltar").remove();
+        
+		
+		
+
+		return false;
+    }
+
+
+
+
+
+
+    function criarBotoes(){
+        var botao1 = document.createElement("input")
+            botao1.type = 'submit';
+            botao1.value = 'Confirmar';
+            botao1.id = 'confirmarAlt';
+            
+        var botao2 = document.createElement("input")
+            botao2.type = 'submit';
+            botao2.value = 'Cancelar';
+            botao2.id = 'cancelarAlt';
+            
+        var botoesEstoque = document.querySelector(".Botoes");
+            botoesEstoque.appendChild(botao1);
+            botoesEstoque.appendChild(botao2);
+
+        
+        var confirmarAlt = document.querySelector("#confirmarAlt") ;
+        confirmarAlt.addEventListener("click", function(e){
+            var confirmar = confirm("Deseja mesmo realizar essa alteração? Após alterado, os dados não poderão mais ser recuperados");
+            if(confirmar){
+                document.querySelector(".cadastro").action ='../estoque/alterarVei/{{VEI_IdVeiculo}}';
+                document.querySelector(".cadastro").method ='POST';
+            }
+        })
+        /*
+        function confirmarAlteracaoVeiculo(){
+            var confirmar = confirm("Deseja mesmo realizar essa alteração? Após alterado, os dados não poderão mais ser recuperados");
+
+            if(confirmar){
+                location.href = "../estoque/alterarVei/{{VEI_IdVeiculo}}"
+            }
+        }*/
+
+
+        var cancelAltVei = document.querySelector("#cancelarAlt");
+        cancelAltVei.addEventListener("click", function(e){
+            e.preventDefault();
+            cancelarAltVei();
+        })
+
+
+        function cancelarAltVei(){
+            var cancelar = confirm("Ao cancelar seus dados serão perdidos\nDeseja cancelar?");
+
+            if(cancelar){
+                location.href = "../estoque/{{VEI_IdVeiculo}}";
+            }
+            return false;
+        }
+    }
+
+    // BOTÃO EXCLUIR
+    var excluir = document.querySelector('.excluirVei');
+    excluir.addEventListener("click", function(e){
+	    e.preventDefault();
+	    excluirVeiculo();
+        console.log('testando botão excluir')
+    });
+
+
+    function excluirVeiculo(){
+	    var excluir = confirm('Deseja mesmo excluir este veículo?\nCaso sim, os dados não poderão ser recuperados')
+	
+        if(excluir){
+	    	location.href = '../estoque/excluir/{{VEI_IdVeiculo}}'; 
+	    }
+	
+    }
+    
+    
+    
+    // BOTÃO VOLTAR
+
+    var voltar = document.querySelector('.voltar');
+    voltar.addEventListener("click", function(e){
+	    e.preventDefault();
+        location.href = '../estoque/consultarVeiculos';
+    });
+
+
+    
+
+</script>
+{{/each}}

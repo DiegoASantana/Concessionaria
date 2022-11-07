@@ -1,0 +1,197 @@
+<main id="cadVeiculo">
+    <div class="caixa">
+        <h1>Cadastrar Veículo</h1>
+        <form action="../estoque/addVeiculo" method="post" class="cadastro">
+            <div class="campos">
+                <label>Cód. Veiculo:</label>
+                <input type="number" name="codigo" class="codVei" value="DEFAULT"  disabled>
+            </div>
+            <div class="campos">
+                <label>Marca:</label>
+                <select name = "marca" class="marca" onchange="selectMarca()">
+                    <option disabled selected>Selecione</option>
+                    {{#each marcas}}
+                    <option value="{{MAR_IdMarca}}">{{MAR_Marca}}</option>
+                    {{/each}}
+                    
+                </select>
+            </div>
+            <div class="campos">
+                <label>Modelo:</label>
+                <select name = "modelo" class="modelo">
+                    <option disabled selected>Selecione</option>                    
+                    
+                </select>
+            </div>
+            <div class="campos">
+                <label>Renavam:</label>
+                <input type="text" name="renavam" class="renavam" maxlength="11">
+            </div>
+            <div class="campos">
+                <label>Placa:</label>
+                <input type="text" name="placa" class="placa" maxlength="8">
+            </div>
+            <div class="campos">
+                <section class="section">
+                    <label>Cor:</label>
+                    <select name = "cor" class="cor">
+                        <option disabled selected>Selecione</option>
+                        <option value="Amarelo">Amarelo</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Branco">Branco</option>
+                        <option value="Grafiti">Grafiti</option>
+                        <option value="Marrom">Marrom</option>
+                        <option value="Prata">Prata</option>
+                        <option value="Preto">Preto</option>
+                        <option value="Rosa">Rosa</option>
+                        <option value="Roxo">Roxo</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Vermelho">Vermelho</option>
+                    </select>
+                </section>
+            </div>
+            <div class="campos">
+                <section class="section">
+                    <label>Ano:</label>
+                    <select name = "ano" class="ano">
+                        <option disabled selected>Selecione</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </section>
+            </div>
+            
+            <div class="situacao">
+                <input id="sit1" type="radio" name="sit1" class="sit" value="1" onchange="liberaKm()"/>Novo
+                <input id="sit2" type="radio" name="sit1" class="sit" value="2" onchange="liberaKm()"/> Seminovo
+            </div>
+            <div class="campos">
+                <label>Km:</label>
+                <input type="number" name="km" class="km" onchange="kmVazio()">
+            </div>
+            <div class="campos">
+                <label class="comb">Combustível:</label>
+                <select name = "combustivel" class="combustivel">
+                    <option disabled selected>Selecione</option>
+                    <option value="ALCOOL">Alcool</option>
+                    <option value="GASOLINA">Gasolina</option>
+                    <option value="FLEX">Flex</option>
+                </select>
+            </div>
+            <div class="campos">
+                <section class="sectionValor">
+                    <label>Valor:</label>
+                    <input type="number" name="valor" class="valor">
+                </section>
+            </div>
+            <div class="campos">
+                <div class="textarea">
+                    <label>Observações:</label>
+                    <textarea name="observacao" placeholder="Mensagem..."></textarea>
+                </div>
+            </div>
+            
+            <div class = "Botoes">
+                <input type="submit" value="Cadastrar" class="cadastrar"></input>
+                <input type="submit" value="Cancelar" class="cancelarCadVeiulo"></input>
+            </div>    
+        </form>
+    </div>
+</main>
+
+<script>
+    
+    $('.renavam').mask('###########')
+    $('.placa').mask("SSS-#S##")
+
+    function liberaKm(){
+        if(document.querySelector('#sit1').checked == true){
+            $('.km').attr('disabled', 'disabled');
+        }else{
+            $('.km').removeAttr("disabled");
+        }   
+    }
+
+    function kmVazio(){
+        let kilometer = document.querySelector('.km').value
+        if(kilometer ==""){
+            alert('preencha a kilometragem')
+        }
+    }
+
+
+    let array = [];
+    {{#each modelos}}
+    array.push({'Marca': {{MOD_IdMarca}}, 'Modelo':'{{MOD_Modelo}}'})
+    {{/each}}
+
+    let array2 =[]
+    
+  
+    function selectMarca(){
+        var marca = document.querySelector('.marca');
+        
+        
+        let optionValue = marca.options[marca.selectedIndex];
+
+        let value = optionValue.value;
+        console.log(value);
+        array2.splice(0, array2.length);
+        for(let i =0; i<array.length;i++){
+            if(array[i].Marca == value){
+                array2.push(array[i].Modelo);   
+            }
+            
+        }
+        limpaSelect();
+        selectModelo();
+        
+    }
+    
+
+    function selectModelo(){
+        const select = document.querySelector('.modelo');
+        for(let i = 0; i<array2.length;i++){
+            select.options[select.options.length] = new Option(array2[i], '2')
+        }
+    }
+
+    function limpaSelect(){
+        const select = document.querySelector('.modelo');
+        select.options.length = 1;
+    }
+    
+
+
+
+
+    var cadastrar = document.querySelector('.cadastrar');
+        cadastrar.addEventListener("click", ()=>{
+        alert('Veículo Cadastrado com Sucesso!');
+    })
+
+    var cancelarCadVei = document.querySelector('.cancelarCadVeiulo');
+        cancelarCadVei.addEventListener("click", (e)=>{
+        e.preventDefault();
+        cancelarCadastroVeiculo();
+    })
+
+    function cancelarCadastroVeiculo(){
+        var cancel = confirm('Deseja mesmo cancelar?\nCaso sim, perderá todos os dados não salvos')
+        
+        if (cancel){
+            location.href = '../estoque/consultarVeiculos';
+        }
+    }
+
+    
+</script> 

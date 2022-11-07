@@ -1,0 +1,194 @@
+<main id="funcionarios">
+    <div class="caixa">
+        <h1>Funcionário</h1>
+        {{#each funcionario}}
+        <form class="cadastro">
+            <div class="campos">
+                <label>Código:</label>
+                <input type="number" name="codigo" class="cod" value="{{FUN_IdFuncionario}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Nome Completo:</label>
+                <input type="text" name="nome" class="nmPessoa" value="{{FUN_Nome}}" disabled>
+            </div>
+            <div class="campos">
+                <label>CPF:</label>
+                <input type="text" name="cpf" id="cpf" class="docPessoa" value="{{FUN_NumCPF}}" disabled>
+            </div>
+            <div class="campos">
+                <label>RG:</label>
+                <input type="text" name="rg" id="rg" class="docPessoa" value="{{FUN_NumRG}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Data Nascimento:</label>
+                <input type="date" name="dtdNascimento" class="dtdNasc" value="{{FUN_DtdNascimento}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Sexo:</label>
+                <select name = "sexo" id="sexo" disabled>
+                    <option value="{{FUN_Sexo}}">{{FUN_Sexo}}</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                </select>
+            </div>
+            <div class="campos">
+                <label>Endereço:</label>
+                <input type="text" name="endereco" class="endereco" value="{{FUN_Endereco}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Nº:</label>
+                <input type="text" name="numEnd" class="numEnd" value="{{FUN_NumEndereco}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Bairro:</label>
+                <input type="text" name="bairro" class="baiCid" value="{{FUN_Bairro}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Cidade:</label>
+                <input type="text" name="cidade" id="cidade" class="baiCid" value="{{FUN_Cidade}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Telefone:</label>
+                <input type="text" name="telefone" class="tel" value="{{FUN_Telefone}}" disabled>
+            </div>
+            <div class="campos">
+                <label>E-mail:</label>
+                <input type="email" name="email" class="email" value="{{FUN_Email}}" disabled>
+            </div>
+            <div class="campos">
+                <label>Cargo:</label>
+                <select name = "cargo" id="cargo" disabled>
+                    <option value="1">Vendedor</option>
+                    <option value="2">Auxiliar</option>
+                    <option value="3">Administrativo</option>
+                    <option value="4">Gerente</option>
+                </select>
+            </div>
+            <div class = "Botoes">
+                <input type="submit" value="Alterar" class="alterar"></input>
+                <input type="submit" value="Excluir" class="excluir"></input>
+                <input type="submit" value="Voltar" class="voltar" onclick="location.href = '../funcionarios'; return false"></input>
+            </div>    
+
+        </form>
+    </div>
+</main>
+<script>
+  
+
+
+
+
+    const select = document.querySelector('#cargo');
+    var idCargo = {{FUN_IdCargo}};
+    var cargo = '';
+    switch(idCargo){
+        case 1: cargo = 'Vendedor'; break;
+        case 2: cargo = 'Auxiliar'; break;
+        case 3: cargo = 'Administrativo'; break;
+        case 4: cargo = 'Gerente'; break;
+    }
+    
+    select.options[select.options.length] = new Option(cargo, idCargo);
+    select.value = idCargo;
+    
+
+
+    // BOTÃO EXCLUIR
+    var excluir = document.querySelector('.excluir');
+    excluir.addEventListener("click", function(e){
+	    e.preventDefault();
+	    excluirFuncionario();
+    });
+
+    function excluirFuncionario(){
+	    var excluir = confirm('Deseja mesmo excluir este registro?\nCaso sim, os dados não poderão ser recuperados')
+	
+        if(excluir){
+	    	location.href = 'excluir/{{FUN_IdFuncionario}}'; 
+	    }
+    }
+    //--------------------------------------------------------------------------------------------------------
+    
+    // BOTÃO ALTERAR
+
+    var alterar = document.querySelector('.alterar');
+    alterar.addEventListener("click", function(e){
+	    e.preventDefault();
+	    alterarCliente();
+        criarBotoes();
+    });
+
+    function alterarCliente(){
+	
+		console.log ("testando")
+		document.querySelector(".cod").removeAttribute("disabled");
+		document.querySelector(".nmPessoa").removeAttribute("disabled");
+		document.querySelector("#cpf").removeAttribute("disabled");
+		document.querySelector("#rg").removeAttribute("disabled");
+		document.querySelector(".dtdNasc").removeAttribute("disabled");
+		document.querySelector("#sexo").removeAttribute("disabled");
+		document.querySelector(".endereco").removeAttribute("disabled");
+		document.querySelector(".numEnd").removeAttribute("disabled");
+		document.querySelector(".baiCid").removeAttribute("disabled");
+		document.querySelector("#cidade").removeAttribute("disabled");
+		document.querySelector(".tel").removeAttribute("disabled");
+		document.querySelector(".email").removeAttribute("disabled");
+		document.querySelector("#cargo").removeAttribute("disabled");
+        document.querySelector(".excluir").remove();
+        document.querySelector(".alterar").remove();
+        document.querySelector(".voltar").remove();
+        
+		return false;
+    }
+
+
+
+
+
+
+    function criarBotoes(){
+        var botao1 = document.createElement("input")
+            botao1.type = 'submit';
+            botao1.value = 'Confirmar';
+            botao1.id = 'confirmarAlt';
+            
+        var botao2 = document.createElement("input")
+            botao2.type = 'submit';
+            botao2.value = 'Cancelar';
+            botao2.id = 'cancelarAlt';
+            
+        var botoesEstoque = document.querySelector(".Botoes");
+            botoesEstoque.appendChild(botao1);
+            botoesEstoque.appendChild(botao2);
+
+        
+        var confirmarAlt = document.querySelector("#confirmarAlt") ;
+        confirmarAlt.addEventListener("click", function(e){
+            var confirmar = confirm("Deseja mesmo realizar essa alteração? Após alterado, os dados não poderão mais ser recuperados");
+            if(confirmar){
+                document.querySelector(".cadastro").action ='alterarFuncionario/:id';
+                document.querySelector(".cadastro").method ='POST';
+            }
+        })
+
+        var cancelAlt = document.querySelector("#cancelarAlt");
+        cancelAlt.addEventListener("click", function(e){
+            e.preventDefault();
+            cancelarAlt();
+        })
+
+
+        function cancelarAlt(){
+            var cancelar = confirm("Ao cancelar seus dados serão perdidos\nDeseja cancelar?");
+
+            if(cancelar){
+                location.href = "../funcionarios/{{FUN_IdFuncionario}}";
+            }
+            return false;
+        }
+    }
+	
+
+</script>
+{{/each}}

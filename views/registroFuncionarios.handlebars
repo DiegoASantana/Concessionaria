@@ -1,0 +1,74 @@
+<main id="consultarFuncionario">
+    <div class="caixa">
+        <h1>Funcionários</h1>
+        
+        <form class="cadastro">
+            <div class="campos">
+                <label>Cód. Funcionário:</label>
+                <input type="number" name="codVei" class="codFuncionario">
+            </div>
+
+            <div class="campos">
+                <label>Nome:</label>
+                <input type="text" name="codVei" class="nmPessoa">
+            </div>
+
+            <div class="campos">
+                <label>CPF:</label>
+                <input type="number" name="codVei" class="docPessoa">
+            </div>
+            <div class="tabela" style="overflow: auto; height:180px">
+                <div class="tabelaCaixa">
+                    <table class = "table">
+                        <thead>
+                            <th>Cod. Func</th>
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                            <th>CPF</th>
+                            <th>RG</th>
+                            <th>Data Nascimento</th>
+                            <th>Sexo</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Endereco</th>
+                            <th>Nº</th>
+                            <th>Bairro</th>
+                            <th>Cidade</th>
+                        </thead>
+                        
+                        
+                        <tbody class="tbody" >
+                        {{#each funcionarios}}
+                            <tr onclick="location.href='../funcionarios/{{FUN_IdFuncionario}}'">
+                                <td  style="text-align: center; width: 20px;">{{FUN_IdFuncionario}}</td>
+                                <td  style="text-align: center; width: auto">{{FUN_Nome}}</td>
+                                <td>{{FUN_IdCargo}}</td>
+                                <td>{{FUN_NumCPF}}</td>
+                                <td style="width: auto;">{{FUN_NumRG}}</td>
+                                <td>{{FUN_DtdNascimento}}</td>
+                                <td>{{FUN_Sexo}}</td>
+                                <td style="width: 100px;">{{FUN_Email}}</td>
+                                <td>{{FUN_Telefone}}</td>
+                                <td style="text-align: center; width: auto;">{{FUN_Endereco}}</td>
+                                <td style="text-align: center;">{{FUN_NumEndereco}}</td>
+                                <td style="text-align: center;">{{FUN_Bairro}}</td>
+                                <td>{{FUN_Cidade}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                        
+                        
+                    </table>
+                </div>
+                
+            </div>
+            
+            <div class = "Botoes">
+                
+                <input type="submit" value="Consultar" class="consultar" ></input>
+                <input type="submit" value="Cadastrar" class="cadastrar" onclick="location.href = '../funcionarios/cadastrarFuncionarios'; return false"></input>
+            <input type="submit" value="Voltar" class="voltar" onclick="location.href='../home'; return false"></input>
+            </div>
+        </form>
+    </div>
+</main>

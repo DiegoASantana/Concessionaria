@@ -1,0 +1,775 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("imagens/BackGround.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#formulario{
+    background-color: #cac6c0fd;
+    padding: 30px;
+    width: 325px;
+    height: 300px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #8d8585
+}
+
+.campos{
+    margin-right: -5px;
+}
+
+#formulario span{
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+#formulario input{
+    width: 225px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding: 5px;
+    border: 2px solid #d1d0ce
+}
+
+
+
+body form a{
+    display: block;
+    text-decoration: none;
+    text-align: right;
+    margin-top: 10px;
+    color: #bb7839;
+}
+
+
+#formulario button{
+    font-size: 16pt;
+	font-weight: bold;
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #ff1f09;
+    border-color: #b95e09;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+#logo{
+    width: 100px;
+    height: 80px;
+    margin: auto;
+    padding-bottom: 30px;
+    padding-top: -50px;
+}
+
+#logo img{
+    width: 120px;
+    height: 120px;
+    margin-left: -10px;
+}
+
+.caixa{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #8d8585;
+    background-color: #cac6c0fd;
+    width: 900px;
+    height: 500px;
+    flex-wrap: wrap;
+    position:relative;
+}
+
+#index .caixa{
+    display: flex;
+}
+
+#logo1{
+    width: 120px;
+    height: 120px;
+    margin-left: 40px;
+}
+
+.Botoes input[type=submit], .Botoes a, #BotoesBaixo a{
+	border: none;
+	box-shadow: 0px 0px 5px #000000;
+	border-radius: 5px;
+	background-color: #ff1f09;
+	text-align: center;
+	text-decoration: none;
+	color:#000000;
+	line-height: 50px;
+	width: 200px;
+    height: 50px;
+	font-size: 16pt;
+	font-weight:bolder;
+}
+
+#index .Botoes{
+    padding-top: 50px;
+}
+
+
+.Botoes a{
+	width: 200px;
+    height: 50px;
+}
+
+
+.Botoes a{
+    display: flow-root;
+    margin: 20px 30px;
+}
+
+
+#BotoesBaixo a{
+    display: inline-block;
+    margin-left: 30px;
+}
+
+#BotoesBaixo{
+    text-align: end;
+	position: absolute;
+    bottom: 20px;
+}
+
+
+.caixa h1{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 36pt;
+    padding-top: 20px;
+    margin: 0px;
+    padding-bottom: 15px;
+}
+
+.cadastro{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.cadastro .campos{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+}
+
+.campos input{
+    height: 30px;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+
+
+
+.cadastro .Botoes input[type=submit]{
+    font-weight: bold;
+    margin: 0px 15px;
+}
+
+.cadastro .Botoes{
+    text-align: center;
+    margin-top: 30px;
+    flex-grow: 1;
+}
+
+.campos label{
+    font-size: 16pt;
+}
+
+.campos input{
+    height: 25px;
+}
+
+.campos select{
+	height: 29.5px;
+}
+
+.cadastro .cod{
+    width: 70px;
+}
+
+.nmPessoa{
+    width: 700px;
+}
+
+.docPessoa{
+    width: 250px;
+}
+
+.dtdNasc{
+    width: 200px;
+}
+
+.endereco{
+    width: 420px;
+}
+
+.numEnd{
+    width: 50px;
+}
+
+.baiCid{
+    width: 280px;
+}
+
+.email{
+    width: 307px;
+}
+
+.codForn{
+    width: 135px;
+}
+
+.nmEmp{
+    width: 640px;
+}
+
+.cnpj{
+    width: 275px;
+}
+
+
+
+#funcionarios .docPessoa{
+    width: 198px;
+}
+
+#sexo{
+    width: 140px;
+}
+
+#cargo{
+    width: 150px;
+}
+
+#funcionarios .Botoes{
+	width: 100%;
+}
+
+
+.codVei{
+    width: 110px;
+}
+
+#cadVeiculo .marca{
+    width: 150px;
+}
+
+#cadVeiculo .modelo{
+    width: 490px;
+}
+
+#cadVeiculo .cor{
+    width: auto;
+}
+
+#cadVeiculo .section{
+    flex-direction: column;
+    display: flex;
+    margin-left: 20px;
+    width: 150px;
+}
+
+#cadVeiculo .ano{
+    width: 100px;
+}
+
+#cadVeiculo .situacao{
+    height: 30px;
+    margin-right: 25px;
+}
+
+#cadVeiculo .situacao input{
+    height: 30px;
+    margin-left: 10px;
+}
+
+#cadVeiculo .sit{
+    width: 17px;
+}
+
+#cadVeiculo .combustivel{
+    width: 150px;
+}
+
+#cadVeiculo .sectionValor{
+    flex-direction: column;
+    display: flex;
+    margin-top: -25px;
+}
+
+.comb{
+    width: 400px;
+}
+
+
+#cadVeiculo .textarea{
+    flex-direction: column;
+    display: flex;
+    margin-left: 100px;
+}
+
+#cadVeiculo form textarea{
+    height: 50px;
+    width: 490px;
+}
+
+
+#estoque .marca{
+    width: 150px;
+}
+
+#estoque .modelo{
+    width: 490px;
+}
+
+#estoque .cor{
+    width: auto;
+}
+
+#estoque .section{
+    flex-direction: column;
+    display: flex;
+    margin-left: 20px;
+    width: 150px;
+}
+
+#estoque .ano{
+    width: 100px;
+}
+
+#estoque .situacao{
+    height: 30px;
+    margin-right: 25px;
+}
+
+#estoque .situacao input{
+    height: 30px;
+    margin-left: 10px;
+    
+}
+
+#estoque .sit1, #estoque .sit2{
+    width: 17px;
+}
+
+#estoque .combustivel{
+    width: 150px;
+}
+
+#estoque .sectionValor{
+    flex-direction: column;
+    display: flex;
+    margin-top: -22px;
+}
+
+
+#estoque .textarea{
+    flex-direction: column;
+    display: flex;
+    margin-left: 100px;
+}
+
+#estoque form textarea{
+    height: 50px;
+    width: 490px;
+}
+
+#estoque .Botoes input[type=submit]{
+    width: 134px;
+    height: 40px;
+	text-align: center;
+    margin: 50px 15px;
+	padding-bottom: 20px;
+}
+
+
+#vendas .caixa h1{
+	padding-bottom: 0px;
+}
+
+
+#vendas .caixa{
+	overflow:auto;
+}
+
+#vendas .caixa #dadosCLiente{
+	padding: 0px 30px;
+}
+
+
+
+#vendas input[type=text], #vendas input[type=number], #vendas input[type=datetime]{
+	height: 20px;
+}
+
+#vendas .dtdVenda{
+    text-align: center;
+}
+
+#vendas select{
+    height: 27px;
+}
+
+
+#vendas .cadastro{
+	margin-top: -20px;
+}
+
+
+#vendas .cadastro #tema{
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: -20px;
+}
+
+
+#vendas .cadastro .codVenda{
+    width: 100px;
+	margin-right: 5px;
+}
+
+#vendas .cadastro .codCliente{
+    width: 100px;
+}
+
+#vendas .cadastro .codFuncionario{
+    width: 100px;
+    margin-left: 20px;
+}
+
+#vendas .cadastro .dtdVenda{
+	margin-right: 250px	
+}	
+
+#vendas .cadastro .nmCLiente{
+    width: 450px;
+}
+
+#vendas .cadastro .docPessoa{
+    width: 180px;
+}
+
+.submit-lente {
+    position:absolute;
+    top:25px; 
+    right:-10px;
+    z-index:10;
+    border:none;
+    background:transparent;
+    outline:none;
+}
+
+#pesq1{
+    right: -20px;
+}
+  
+.submit-line {
+    margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 20px;
+    position: relative;
+    width: 110px;
+    font-size: 14pt;
+}
+
+
+
+.submit-line input{
+    width: 80%;
+    text-align: right;
+}
+
+#vendas .cadastro .marca{
+    width: 150px;
+}
+
+
+#vendas .cadastro .modelo{
+    width: 400px;
+}
+
+#vendas .situacao{
+	margin-right: 27px;
+	font-size: 16pt;
+}
+
+
+#vendas .sit1, #vendas .sit2{
+    width: 17px;
+}
+
+
+#vendas .section{
+    flex-direction: column;
+    display: flex;
+    width: 150px;
+}
+
+#vendas .km{
+    width: 150px;
+}
+
+#vendas .combustivel{
+    width: 150px;
+}
+
+
+
+#vendas .sectionValor{
+    flex-direction: column;
+    display: flex;
+	margin-top: -25px;
+}
+
+
+#vendas form textarea{
+    height: 50px;
+    width: 490px;
+	flex-direction: column;
+	display: flex;
+    margin-right: 100px;
+}
+
+#vendas .valorEntrada{
+    margin-right: 50px;
+}
+
+
+#vendas .qtdParcela{
+    margin-right: 40px;
+}
+
+
+#vendas .Botoes{
+	margin-bottom: 25px;
+	width: 100%;
+}
+
+
+#consultaVeiculo .caixa{
+	width: 1300px;
+	position:relative;
+    
+}
+
+#consultaVeiculo select{
+    height: 25px;
+}
+
+#consultaVeiculo .marca{
+	width: 120px;
+}
+
+
+#consultaVeiculo .modelo{
+	width: 400px;
+}
+
+#consultaVeiculo .section{
+	flex-direction: column;
+    display: flex;
+    width: 150px;
+}
+
+
+#consultaVeiculo .cor{
+    width: auto;
+}
+
+
+#consultaVeiculo .ano{
+    width: 100px;
+}
+
+#consultaVeiculo .situacao{
+    margin-right: 25px;
+	flex-direction: column;
+	display: flex;
+}
+
+#consultaVeiculo .situacao label{
+	font-size: 16pt;
+	margin-left: 10px;
+}	
+
+#consultaVeiculo .situacao input{
+    height: 20px;
+    margin-left: 10px;
+}
+
+#consultaVeiculo .sit{
+    width: 17px;
+}
+
+#consultaVeiculo .combustivel, #consultaVeiculo .comb{
+    width: 150px;
+	margin: 0px;
+}
+
+#consultaVeiculo .sectionValor{
+    flex-direction: column;
+    display: flex;
+}
+
+
+#consultaVeiculo .tabela{
+	width: 100%;
+    box-shadow: 0px 0px 5px #000000;
+    margin-top: 20px;
+    overflow: auto;
+}	
+
+
+#consultaVeiculo table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+#consultaVeiculo table, th, td {
+  border: 1px solid;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+#consultaVeiculo .table th{
+	background-color: #e0e094;
+    top: 0;
+}
+
+.table tr:hover td{
+    background-color: #dfe209;
+}
+
+
+#consultaVeiculo .Botoes{
+	text-align: end;
+	position: absolute;
+	width: 100%;
+    right: 0;
+    bottom: 10px;
+}
+
+/* CONSULTACLIENTE */
+
+#consultarCliente .caixa{
+	width: 1300px;
+	position:relative;
+    
+}
+
+
+#consultarCliente .tabela{
+	width: 150%;
+    box-shadow: 0px 0px 5px #000000;
+    margin-top: 20px;
+    overflow-x: scroll;
+}
+
+
+#consultarCliente table{
+  border-collapse: collapse;
+  background-color: #ffffff;
+  width: max-content;
+}
+
+#consultarCliente table, th, td {
+  border: 1px solid;
+  padding-right: 5px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+#consultarCliente .table th{
+	background-color: #e0e094;
+    top: 0;
+}
+
+
+#consultarCliente .Botoes{
+	text-align: end;
+	position: absolute;
+	width: 100%;
+    right: 0;
+    bottom: 10px;
+}
+
+
+/* CONSULTARfuncionario */
+
+#consultarFuncionario .caixa{
+	width: 1300px;
+	position:relative;
+    
+}
+
+
+#consultarFuncionario .tabela{
+	width: 100%;
+    margin-top: 20px;
+    align-items: center;
+    
+}	
+
+#consultarFuncionario .tabelaCaixa{
+    margin: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 99.8%;
+    box-shadow: 0px 0px 10px #000000;
+}
+
+
+#consultarFuncionario table {
+  border-collapse: collapse;
+  background-color: #ffffff;
+  width: max-content;
+}
+
+#consultarFuncionario table, th, td {
+  border: 1px solid;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+#consultarFuncionario .table th{
+	background-color: #e0e094;
+    top: 0;
+}
+
+
+#consultarFuncionario .Botoes{
+	text-align: end;
+	position: absolute;
+	width: 100%;
+    right: 0;
+    bottom: 10px;
+}
+
+
+	
+

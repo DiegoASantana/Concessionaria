@@ -1,0 +1,12 @@
+para logar no cmd
+
+mysql -h localhost -u root -p
+IRÁ PEDIR A SENHA: 151819
+
+SHOW DATABASES; ---> mostra os bancos de dados que temos cadastrados
+
+USE 'nome da database'; ----> seleciona o banco de dados
+
+SHOW TABLES; ---> mostra as tabelas que tem nesse banco de dados
+
+DESCRIBE 'nome da tabela'; ----> mostra as descrições de cada campo da tabela

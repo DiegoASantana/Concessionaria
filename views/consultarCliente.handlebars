@@ -1,0 +1,161 @@
+<main id="consultarCliente">
+    <div class="caixa">
+        <h1>Clientes</h1>
+        
+        <form class="cadastro">
+            <div class="campos">
+                <label>Cód. Cliente:</label>
+                <input type="number" name="codVei" class="codCliente" onclick="limparNomeEDocPessoa();">
+            </div>
+
+            <div class="campos">
+                <label>Nome:</label>
+                <input type="text" name="codVei" class="nmPessoa" onclick="limparCodClienteEDocPessoa();">
+            </div>
+
+            <div class="campos">
+                <label>CPF:</label>
+                <input type="text" name="codVei" class="docPessoa" onclick="limparCodClienteENome();" maxlength="14">
+            </div>
+            <div class="tabela" style="height:180px;">
+                <table class = "table">
+                    <thead>
+                        <th style="width: 20px;">Cod. Cliente</th>
+                        <th style="width: 300px">Nome</th>
+                        <th style="width: 115px;">CPF</th>
+                        <th style="width: 90px;">RG</th>
+                        <th style="width: 120px;">Data Nascimento</th>
+                        <th style="width: 250px;">E-mail</th>
+                        <th style="width: 120px;">Telefone</th>
+                        <th style="width: 270px;">Endereco</th>
+                        <th style="width: 50px;">Nº</th>
+                        <th style="width: 150px;">Bairro</th>
+                        <th style="width: 150px;">Cidade</th>
+                    </thead>
+                    
+                    
+                    <tbody class="tbody" >
+                    {{#each clientes}}
+                        <tr onclick="location.href='../clientes/{{CLI_IdCliente}}'">
+                            <td style="text-align: center;">{{CLI_IdCliente}}</td>
+                            <td>{{CLI_Nome}}</td>
+                            <td style="text-align: center;">{{CLI_NumCPF}}</td>
+                            <td style="text-align: center;">{{CLI_NumRG}}</td>
+                            <td style="text-align: center;">{{CLI_DtdNascimento}}</td>
+                            <td>{{CLI_Email}}</td>
+                            <td style="text-align: center;">{{CLI_Telefone}}</td>
+                            <td>{{CLI_Endereco}}</td>
+                            <td style="text-align: center;">{{CLI_NumEndereco}}</td>
+                            <td style="text-align: center;">{{CLI_Bairro}}</td>
+                            <td>{{CLI_Cidade}}</td>
+                       </tr>
+                       {{/each}}
+                    </tbody>
+                    
+                    
+                </table>
+                
+            </div>
+            
+            <div class = "Botoes">
+                
+                <input type="submit" value="Consultar" class="consultar" ></input>
+                <input type="submit" value="Cadastrar" class="cadastrarCliente"></input>
+                <input type="submit" value="Voltar" class="voltar" onclick="location.href='../home'; return false"></input>
+            </div>
+        </form>
+    </div>
+</main>
+<script>
+
+    $('.docPessoa').mask('000.000.000-00')
+
+    function limparNomeEDocPessoa(){
+        $('.nmPessoa').val('');
+        $('.docPessoa').val('');
+    }
+
+    function limparCodClienteEDocPessoa(){
+        $('.codCliente').val('');
+        $('.docPessoa').val('');
+    }
+
+    function limparCodClienteENome(){
+        $('.codCliente').val('');
+        $('.nmPessoa').val('');
+    }
+
+
+
+    let clientes = [];
+    {{#each clientes}}
+        clientes.push({
+            'IdCliente': {{CLI_IdCliente}},
+            'Nome': '{{CLI_Nome}}',
+            'cpf': '{{CLI_NumCPF}}',
+            'rg': '{{CLI_NumRG}}',
+            'DtdNascimento': '{{CLI_DtdNascimento}}',
+            'Email': '{{CLI_Email}}',
+            'Telefone': '{{CLI_Telefone}}',
+            'Endereco': '{{CLI_Endereco}}',
+            'numEndereco': '{{CLI_NumEndereco}}',
+            'Bairro': '{{CLI_Bairro}}',
+            'Cidade': '{{CLI_Cidade}}'});
+    {{/each}}
+
+
+    // BOTÃO CADASTRAR
+    var cadastrarVeiculo = document.querySelector('.cadastrarCliente');
+    cadastrarVeiculo.addEventListener("click", (e)=>{
+        e.preventDefault();
+        cadastrarCliente();
+    })
+
+    function cadastrarCliente(){
+        var cadastrar = document.querySelector(".cadastrarCliente");
+        
+        if (cadastrar){
+            location.href = '../clientes/cadastrarClientes'
+        }
+    }
+
+
+    // BOTÃO CONSULTAR
+    var consult = document.querySelector('.consultar');
+    consult.addEventListener("click", function(e){
+        e.preventDefault();
+        $('tbody').remove();
+        busca();
+
+    })
+
+    function busca(){
+        let codCliente = $('.codCliente').val();
+        let nomeCliente = $('.nmPessoa').val().toUpperCase();
+        let cpfCliente = $('.docPessoa').val();
+        const linhasTbody = document.querySelector('.table');
+        let qtdClientes = {{clientes.length}};
+
+        for(let i = 0; i< qtdClientes; i++){
+            let nome = (clientes[i].Nome).toUpperCase();
+            if(codCliente == clientes[i].IdCliente || nomeCliente == nome.substring(0, nome.indexOf(' ')) || cpfCliente == clientes[i].cpf){
+                    var parte1 = `<tr onclick="location.href='../clientes/${clientes[i].IdCliente}'"><td>${clientes[i].IdCliente}</td>`;
+                    var parte2 = `<td>${clientes[i].Nome}</td>`
+                    var parte3 = `<td>${clientes[i].cpf}</td>`
+                    var parte4 = `<td>${clientes[i].rg}</td>`
+                    var parte5 = `<td>${clientes[i].DtdNascimento}</td>`
+                    var parte6 = `<td>${clientes[i].Email}</td>`
+                    var parte7 = `<td>${clientes[i].Telefone}</td>`
+                    var parte8 = `<td>${clientes[i].Endereco}</td>`
+                    var parte9 = `<td>${clientes[i].numEndereco}</td>`
+                    var parte10 = `<td>${clientes[i].Bairro}</td>`
+                    var parte11 = `<td>${clientes[i].Cidade}</td>`
+                
+                }
+        }
+        linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8+ parte9+ parte10+ parte11;
+        linhasTbody.innerHTML += "</tr>";
+    }
+            
+   
+</script>
