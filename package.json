@@ -9,5 +9,14 @@
     "mysql2": "^2.3.3",
     "nodemailer": "^6.8.0",
     "sequelize": "^6.23.0"
-  }
+  },
+  "name": "prototipo",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 8081;
+const port = process.env.PORT || 8081;
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const session = require('express-session');
