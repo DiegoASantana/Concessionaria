@@ -6,7 +6,7 @@ const Cliente = require('../models/Cliente');
 const VeiculoVendido = require ('../models/VeiculoVendido');
 
 
-router.get('/', (req,res)=>{
+router.get('/registrar', (req,res)=>{
     Veiculo.findAll().then(function(veiculo){
         Cliente.findAll().then((cliente)=>{
             Venda.findAll().then((venda)=>{
