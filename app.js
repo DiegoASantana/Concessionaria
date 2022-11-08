@@ -27,7 +27,7 @@ const Funcionario = require('./models/Funcionario');
 
 
 		app.use('/estoque',require('./Routes/rota_estoque'));
-		app.use('/index',require('./Routes/rota_user'));
+		app.use('/',require('./Routes/rota_user'));
 		app.use('/clientes',require('./Routes/rota_cliente'));
 		app.use('/funcionarios',require('./Routes/rota_funcionario'));
 		app.use('/vendas',require('./Routes/rota_vendas'));
