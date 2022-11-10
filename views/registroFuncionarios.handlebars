@@ -67,20 +67,8 @@
                 
                 <input type="submit" value="Consultar" class="consultar" ></input>
                 <input type="submit" value="Cadastrar" class="cadastrar" onclick="location.href = '../funcionarios/cadastrarFuncionarios'; return false"></input>
-            <input type="submit" value="Voltar" class="voltar"></input>
+            <input type="submit" value="Voltar" class="voltar" onclick="location.href='home'; return false"></input>
             </div>
         </form>
     </div>
 </main>
-
-<script>
-    //BOTÃO VOLTAR
-
-    let voltar = document.querySelector('.voltar');
-    voltar.addEventListener("click", (e)=>{
-        e.preventDefault();
-        const idFunc = sessionStorage.getItem('IdFuncionario');
-    
-        window.location.href = '/home?user='+idFunc;
-    })
-</script>

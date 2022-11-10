@@ -5,7 +5,7 @@ const Cliente = require('../models/Cliente');
 
 
 
-router.get('/', (req, res) =>{
+router.get('/registros', (req, res) =>{
     Cliente.findAll().then(function(clientes){ // TUDO QUE ESTÁ DENTRO DO findAll() SÓ PRECISA COLCOAR QUANDO QUISER MUDAR A ORDEM QUE SERÁ SALVO NA VARIÁVEL POST. NESTE CASO ELE APRESENTARÁ EM ORDEM DECRESCENTE PELO ID
         res.render('consultarCliente', {clientes: clientes})
     })

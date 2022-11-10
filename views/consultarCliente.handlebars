@@ -58,22 +58,15 @@
             </div>
             
             <div class = "Botoes">
+                
                 <input type="submit" value="Consultar" class="consultar" ></input>
                 <input type="submit" value="Cadastrar" class="cadastrarCliente"></input>
-                <input type="submit" value="Voltar" class="voltar"></input>
+                <input type="submit" value="Voltar" class="voltar" onclick="location.href='/'; return false"></input>
             </div>
         </form>
     </div>
 </main>
 <script>
-    //BOTÃO VOLTAR
-
-    let voltar = document.querySelector('.voltar');
-    voltar.addEventListener("click", (e)=>{
-        e.preventDefault();
-        const idFunc = sessionStorage.getItem('IdFuncionario');
-        window.location.href = '/home?user='+idFunc;
-    })
 
     $('.docPessoa').mask('000.000.000-00')
 
@@ -163,9 +156,6 @@
         linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8+ parte9+ parte10+ parte11;
         linhasTbody.innerHTML += "</tr>";
     }
-
-
-    
             
    
 </script>
