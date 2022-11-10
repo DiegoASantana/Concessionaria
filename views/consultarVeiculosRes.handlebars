@@ -1,9 +1,9 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
 <main id="consultaVeiculo">
     <div class="caixa">
-        <h1>Estoque</h1>
+        <h1>Estoque Consulta</h1>
         
-        <form class="cadastro" action ="/estoque/consultarVeiculos/" method="get">
+        <form class="cadastro">
             <div class="campos">
                 <label>Cód. Veiculo:</label>
                 <input type="number" name="codVei" class="codVei">
@@ -27,28 +27,28 @@
             </div>
             <div class="campos">
                 <label>Renavam:</label>
-                <input type="number" name="renavam" class="renavam" maxlength="11">
+                <input type="number" name="renavam" class="renavam">
             </div>
             <div class="campos">
                 <label>Placa:</label>
-                <input type="text" name="placa" class="placa" minlength="8" maxlength="8">
+                <input type="text" name="placa" class="placa">
             </div>
             <div class="campos">
                 <section class="section">
                     <label>Cor:</label>
                     <select name = "cor" class="cor">
                         <option disabled selected>Selecione</option>
-                        <option value="AMARELO">AMARELO</option>
-                        <option value="AZUL">AZUL</option>
-                        <option value="BRANCO">BRANCO</option>
-                        <option value="GRAFITI">GRAFITI</option>
-                        <option value="MARROM">MARROM</option>
-                        <option value="PRATA">PRATA</option>
-                        <option value="PRETO">PRETO</option>
-                        <option value="ROSA">ROSA</option>
-                        <option value="ROXO">ROXO</option>
-                        <option value="VERDE">VERDE</option>
-                        <option value="VERMELHO">VERMELHO</option>
+                        <option value="Amarelo">Amarelo</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Branco">Branco</option>
+                        <option value="Grafiti">Grafiti</option>
+                        <option value="Marrom">Marrom</option>
+                        <option value="Prata">Prata</option>
+                        <option value="Preto">Preto</option>
+                        <option value="Rosa">Rosa</option>
+                        <option value="Roxo">Roxo</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Vermelho">Vermelho</option>
                     </select>
                 </section>
             </div>
@@ -135,7 +135,7 @@
                             <td style="text-align: center;">{{VEI_Novo}}</td>
                             <td style="text-align: center;">{{VEI_Km}}</td>
                             <td>{{VEI_Combustivel}}</td>
-                            <td style="width: 80px; text-align: right;">R$ {{VEI_Valor}}</td>
+                            <td style="width: 80px; text-align: right;">R${{VEI_Valor}}</td>
                        </tr>
                        {{/each}}
                     </tbody>
@@ -149,32 +149,18 @@
                 
                 <input type="submit" value="Consultar" class="consultar" ></input>
                 <input type="submit" value="Cadastrar" class="cadastrar" ></input>
-                <input type="submit" value="Voltar" class="voltar"></input>
+                <input type="submit" value="Cancelar" class="cancelarConsulta"></input>
             </div>
         </form>
     </div>
 </main>
 
     <script>
-        //BOTÃO VOLTAR
-
-    let voltar = document.querySelector('.voltar');
-    voltar.addEventListener("click", (e)=>{
-        e.preventDefault();
-        const idFunc = sessionStorage.getItem('IdFuncionario');
-    
-        window.location.href = '/home?user='+idFunc;
-    })
         
-        $('.placa').mask("SSS-#S##");
+
         let array = [];
         let array2 =[]
         let vei = [];
-
-        /* tentei formatar o valor do km na tabela
-        function formatKM(valor){
-            return valor.toLocaleString('pt-BR');
-        }*/
 
 
         {{#each modelos}}
@@ -186,17 +172,9 @@
 
         
         
-        /*
-        var confirmarAlt = document.querySelector(".consultar") ;
-        confirmarAlt.addEventListener("click", function(e){
-            let id = document.querySelector('.codVei').value;
-            var confirmar = confirm("Deseja mesmo realizar essa consulta?");
-            if(confirmar){
-                document.querySelector(".cadastro").action ="/estoque/consultarVeiculos/res";
-                document.querySelector(".cadastro").method ='GET';
-            }
-        })
-        */
+        
+
+        
     
         function selectMarca(){
             var marca = document.querySelector('.marca');
@@ -231,74 +209,6 @@
             select.options.length = 1;
         }
 
-        
-
-        // BOTÕES
-        
-
-        var consult = document.querySelector('.consultar');
-        consult.addEventListener("click", function(e){
-            e.preventDefault();
-            $('tbody').remove();
-            busca();
-
-        })
-
-       
-        /*
-        function removeLinhas(){
-            const linhasTbody = document.querySelector('.table');
-
-            const linhas = document.querySelector('.tbody');
-            //linhas.style.display = 'none'
-            let qtdlinhas = linhasTbody.rows.length;
-            let qtdlinhas0 = qtdlinhas
-            
-            while(qtdlinhas0 > 0){
-                linhas.style.display = 'none';
-                qtdlinhas0 --;
-                console.log(qtdlinhas0)
-            }
-            
-        }
-        */
-        
-        
-        function busca(){
-            const modelo = document.querySelector('.modelo');
-            const linhasTbody = document.querySelector('.table');
-            
-            
-            let optionValue = modelo.options[modelo.selectedIndex];
-            let value = optionValue.value;
-            
-            for(let i = 0; i<vei.length;i++){
-                if(value == vei[i].Modelo){
-                    var parte1 = `<tr onclick="location.href='../estoque/${vei[i].IdVeiculo}'"><td>${vei[i].IdVeiculo}</td>`;
-                    var parte2 = `<td>${vei[i].Marca}</td>`
-                    var parte3 = `<td>${vei[i].Modelo}</td>`
-                    var parte4 = `<td>${vei[i].Renavam}</td>`
-                    var parte5 = `<td>${vei[i].Placa}</td>`
-                    var parte6 = `<td>${vei[i].Cor}</td>`
-                    var parte7 = `<td>${vei[i].Ano}</td>`
-                    var parte8 = `<td>${vei[i].Situacao}</td>`
-                    var parte9 = `<td>${vei[i].Km}</td>`
-                    var parte10 = `<td>${vei[i].Combustivel}</td>`
-                    var parte11 = `<td>${vei[i].Valor}</td>`
-                
-                }
-                
-            }
-            linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8+ parte9+ parte10+ parte11;
-            linhasTbody.innerHTML += "</tr>";
-                
-            
-            
-            
-        }
-            
-       
-    
 
 
         var cadastrarVeiculo = document.querySelector('.cadastrar');
@@ -313,7 +223,28 @@
             if (cadastrar){
                 location.href = '../estoque/cadastrarVeiculos'
             }
-        }     
+        }
+
+        // Adding an event listener to the cancelCadVei element.
+        var cancelCadVei = document.querySelector('.cancelarConsulta');
+        cancelCadVei.addEventListener("click", function(e){
+            e.preventDefault();
+            console.log('testando cancelarCAd')
+            cancelarConsult();
+        })
+        
+
+        // A function that is called when the user clicks on a button.
+        function cancelarConsult(){
+            var cancel = confirm(`Deseja mesmo cancelar?\nCaso sim, perderá todos os dados não salvos`)
+        
+            if(cancel){
+                location.href = '/home'; 
+            }
+        
+        }
+
+        
 
 
 

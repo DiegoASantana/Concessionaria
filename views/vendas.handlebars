@@ -356,25 +356,17 @@
     // BOTÕES
 
 
+    //BOTÃO VOLTAR
 
-
-
-
-    var cancel = document.querySelector('.cancelar');
-    cancel.addEventListener("click", function(e){
+    let cancel = document.querySelector('.cancelar');
+    cancel.addEventListener("click", (e)=>{
         e.preventDefault();
-        cancelar();
-        console.log('testando botão cancelar')
-    });
+        const idFunc = sessionStorage.getItem('IdFuncionario');
+        window.location.href = '/home?user='+idFunc;
+    })
 
 
 
-    function cancelar(){
-	    var cancel = confirm('Deseja mesmo cancelar?\nCaso sim, perderá todos os dados não salvos')
-	
-        if(cancel){
-	    	location.href = '../home'; 
-	    }
-	
-    }
+
+
 </script>
