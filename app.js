@@ -25,9 +25,8 @@ const Funcionario = require('./models/Funcionario');
 		app.use(session({secret:'asdkjnsdijuhsdfiouhsdfj'}));
 		
 
-
-		app.use('/estoque',require('./Routes/rota_estoque'));
 		app.use('/',require('./Routes/rota_user'));
+		app.use('/estoque',require('./Routes/rota_estoque'));
 		app.use('/clientes',require('./Routes/rota_cliente'));
 		app.use('/funcionarios',require('./Routes/rota_funcionario'));
 		app.use('/vendas',require('./Routes/rota_vendas'));
@@ -39,7 +38,11 @@ const Funcionario = require('./models/Funcionario');
 
 	
 	app.get('/home', (req,res)=>{
-		res.render('home')
+		let user = req.query.user;
+		console.log(user)
+		Funcionario.findAll({where: {FUN_IdFuncionario: user}}).then((resultFUN)=>{
+			res.render('home', {result: resultFUN});
+        })
 	})
 	
 

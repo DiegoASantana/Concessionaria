@@ -2,8 +2,8 @@
     <div class="caixa">
         
         <section class="Botoes">
-            <a href="clientes/registros">Clientes</a>
-            <a href="/funcionarios/registros" id="func">Funcionários</a>
+            <a href="/clientes" id="clientes">Clientes</a>
+            <a href="/funcionarios/" id="func">Funcionários</a>
             <a href="estoque/consultarVeiculos">Estoque</a>
             <a href="vendas/registrar">Vendas</a>
         </section>
@@ -25,6 +25,7 @@
     sessionStorage.setItem("IdCargo", idcargo)
     sessionStorage.setItem("IdFuncionario", idfunc)
     {{/each}}
+    
     let dadosCargo = sessionStorage.getItem('IdCargo');
     if(dadosCargo < 4){
         document.querySelector('#func').style.display = "none";
@@ -34,6 +35,7 @@
     function limpaSessionStorage(){
         sessionStorage.clear();
     }
+
     
 </script>
 

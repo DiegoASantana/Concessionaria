@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 
 
 // INICIO
-    router.get('/registros', (req, res) =>{
+    router.get('/', (req, res) =>{
         Funcionario.findAll().then((funcionarios)=>{
             res.render('registroFuncionarios', {funcionarios: funcionarios});
         })
