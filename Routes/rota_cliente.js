@@ -27,7 +27,7 @@ router.post('/addCliente', (req,res)=>{
             CLI_Telefone: req.body.telefone,
             CLI_Email: req.body.email
         }).then(()=>{
-            res.redirect('/home');
+            res.redirect('/clientes');
         }).catch((erro) =>{
             res.send("Houve um erro: " + erro);
         })

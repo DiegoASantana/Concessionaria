@@ -11,7 +11,7 @@
                 <select name = "marca" class="marca" onchange="selectMarca()">
                     <option disabled selected>Selecione</option>
                     {{#each marcas}}
-                    <option value="{{MAR_IdMarca}}">{{MAR_Marca}}</option>
+                    <option value="{{MAR_Marca}}">{{MAR_Marca}}</option>
                     {{/each}}
                     
                 </select>
@@ -134,7 +134,13 @@
     array.push({'Marca': {{MOD_IdMarca}}, 'Modelo':'{{MOD_Modelo}}'})
     {{/each}}
 
+    let idmarca = '';
     let array2 =[]
+
+    let marcas = [];
+    {{#each marcas}}
+    marcas.push({'MarcaID': {{MAR_IdMarca}},'Marca':'{{MAR_Marca}}' })
+    {{/each}}
     
   
     function selectMarca(){
@@ -146,14 +152,23 @@
         let value = optionValue.value;
         console.log(value);
         array2.splice(0, array2.length);
+
+        for(let i =0;i<marcas.length;i++){
+            if(value == marcas[i].Marca){
+                idmarca = marcas[i].MarcaID
+            }
+        }
+        
+
         for(let i =0; i<array.length;i++){
-            if(array[i].Marca == value){
-                array2.push(array[i].Modelo);   
+            if(array[i].Marca == idmarca){
+                array2.push(array[i].Modelo);
             }
             
         }
         limpaSelect();
         selectModelo();
+
         
     }
     
@@ -161,7 +176,7 @@
     function selectModelo(){
         const select = document.querySelector('.modelo');
         for(let i = 0; i<array2.length;i++){
-            select.options[select.options.length] = new Option(array2[i], '2')
+            select.options[select.options.length] = new Option(array2[i], array2[i])
         }
     }
 

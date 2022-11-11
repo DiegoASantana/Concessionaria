@@ -45,7 +45,7 @@ const bcrypt = require('bcrypt');
                 FUN_Sexo: req.body.sexo
             }).then(()=>{
                 criarUsuario();
-                res.redirect('/home');
+                res.redirect('/funcionarios');
             }).catch((erro) =>{
                 res.send("Houve um erro: " + erro);
             });
