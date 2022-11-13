@@ -41,6 +41,9 @@ const Funcionario = db.sequelize.define('funcionarios', {
     },
     FUN_Sexo: {
         type: db.Sequelize.STRING
+    },
+    FUN_Situacao: {
+        type: db.Sequelize.STRING
     }
 },{
     timestamps: false

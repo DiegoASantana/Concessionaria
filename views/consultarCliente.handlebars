@@ -5,17 +5,17 @@
         <form class="cadastro">
             <div class="campos">
                 <label>Cód. Cliente:</label>
-                <input type="number" name="codVei" class="codCliente" onclick="limparNomeEDocPessoa();">
+                <input type="number" name="codCliente" class="codCliente" onclick="limparNomeEDocPessoa();">
             </div>
 
             <div class="campos">
                 <label>Nome:</label>
-                <input type="text" name="codVei" class="nmPessoa" onclick="limparCodClienteEDocPessoa();">
+                <input type="text" name="nome" class="nmPessoa" onclick="limparCodClienteEDocPessoa();">
             </div>
 
             <div class="campos">
                 <label>CPF:</label>
-                <input type="text" name="codVei" class="docPessoa" onclick="limparCodClienteENome();" maxlength="14">
+                <input type="text" name="cpf" class="docPessoa" onclick="limparCodClienteENome();" maxlength="14">
             </div>
             <div class="tabela" style="height:180px;">
                 <table class = "table">
@@ -157,11 +157,13 @@
                     var parte9 = `<td>${clientes[i].numEndereco}</td>`
                     var parte10 = `<td>${clientes[i].Bairro}</td>`
                     var parte11 = `<td>${clientes[i].Cidade}</td>`
+
+                    linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8+ parte9+ parte10+ parte11;
+                    linhasTbody.innerHTML += "</tr>";
                 
                 }
         }
-        linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8+ parte9+ parte10+ parte11;
-        linhasTbody.innerHTML += "</tr>";
+        
     }
 
 

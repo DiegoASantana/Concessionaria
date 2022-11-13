@@ -12,11 +12,11 @@
             </div>
             <div class="campos">
                 <label>CPF:</label>
-                <input type="text" name="cpf" id="cpf" class="docPessoa">
+                <input type="text" name="cpf" id="cpf" class="docPessoa" maxlength="14">
             </div>
             <div class="campos">
                 <label>RG:</label>
-                <input type="text" name="rg" id="rg" class="docPessoa">
+                <input type="text" name="rg" id="rg" class="docPessoa" maxlength="12">
             </div>
             <div class="campos">
                 <label>Data Nascimento:</label>
@@ -26,8 +26,8 @@
                 <label>Sexo:</label>
                 <select name = "sexo" id="sexo">
                     <option>Selecione</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
+                    <option value="MASCULINO">Masculino</option>
+                    <option value="FEMININO">Feminino</option>
                 </select>
             </div>
             <div class="campos">
@@ -36,7 +36,7 @@
             </div>
             <div class="campos">
                 <label>Nº:</label>
-                <input type="text" name="numEnd" class="numEnd">
+                <input type="text" name="numEnd" class="numEnd" maxlength="10">
             </div>
             <div class="campos">
                 <label>Bairro:</label>
@@ -48,7 +48,7 @@
             </div>
             <div class="campos">
                 <label>Telefone:</label>
-                <input type="text" name="telefone" class="tel">
+                <input type="text" name="telefone" class="tel" maxlength="15">
             </div>
             <div class="campos">
                 <label>E-mail:</label>
@@ -74,7 +74,7 @@
 <script>
     $('#rg').mask('##.###.###-#',{reverse:true});
     $('#cpf').mask('###.###.###-##',{reverse:true});
-    $('.tel').mask('(##)#####-####');
+    $('.tel').mask('(##) #####-####');
 
 
     var cadastrar = document.querySelector('.cadastrar');

@@ -36,11 +36,14 @@ router.post('/', (req,res)=>{
         if(result.length > 0){
                 const same = bcrypt.compareSync(senha, result[0].USU_Senha);
                 if(same){
-                    req.session.usu = usu;
-                    let idFunc = result[0].USU_IdFuncionario;
-                    console.log(idFunc)
-                    res.redirect('/home?user='+ idFunc)
-                    
+                    if(result[0].USU_Ativo == 1){
+                        req.session.usu = usu;
+                        let idFunc = result[0].USU_IdFuncionario;
+                        console.log(idFunc)
+                        res.redirect('/home?user='+ idFunc)
+                    }else{
+                        res.send({message: "Este Usuário Encontra-se Desativado"})
+                    }    
                 }else{
                     console.log("Senha no banco: " +result[0].USU_Senha + " não confere com senha colocada: " +senha);
                     return res.send({message: 'Senha não confere'});

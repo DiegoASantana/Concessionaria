@@ -42,7 +42,8 @@ const bcrypt = require('bcrypt');
                 FUN_Bairro: req.body.bairro,
                 FUN_Cidade: req.body.cidade,
                 FUN_Telefone: req.body.telefone,
-                FUN_Sexo: req.body.sexo
+                FUN_Sexo: req.body.sexo,
+                FUN_Situacao: 'ATIVO'
             }).then(()=>{
                 criarUsuario();
                 res.redirect('/funcionarios');
@@ -100,11 +101,11 @@ const bcrypt = require('bcrypt');
 
 // EXLUIR FUNCIONARIO
 
-    router.get('/excluir/:id', (req,res)=>{
+    router.get('/desativar/:id', (req,res)=>{
         let id = req.params.id
         try{
-            Usuario.update({USU_IdFuncionario: null , USU_Ativo: 0}, {where: {USU_IdFuncionario: id}})
-            Funcionario.destroy({where:{FUN_IdFuncionario: id}}).then(()=>{
+            Usuario.update({USU_Ativo: 0}, {where: {USU_IdFuncionario: id}})
+            Funcionario.update({FUN_Situacao: 'DESATIVADO'},{where:{FUN_IdFuncionario: id}}).then(()=>{
                 res.status(201).redirect('../');
             }).catch((error)=>{
                 res.status(404).send('Deu Ruim...' + error);

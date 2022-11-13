@@ -254,8 +254,11 @@
         $('.ano').val(ano)
         if(situacao == 1){
             $('.sit1').prop("checked", true);
+            $('.sit2').prop("checked", false);
+            
         }else{
             $('.sit2').prop("checked", true);
+            $('.sit1').prop("checked", false);
         };
         $('.km').val(km);
         $('.combustivel').val(combustivel);
