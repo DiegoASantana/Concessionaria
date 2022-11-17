@@ -93,7 +93,7 @@ const Funcionario = require('./models/Funcionario');
 				subject: "HighStreet Concessionária - Senha para acesso ao Sistema",
 				text: "Aqui estou testando o texto",
 				html: `Sua senha para acesso ao sistema é: <strong>${senha}</strong><br>
-				<a href='http://localhost:8081/index'>Clique aqui</a> para ser redirecionado ao sistema HighStreet Concessionaria`
+				<a href='https://highstreet-concessionaria.herokuapp.com'>Clique aqui</a> para ser redirecionado ao sistema HighStreet Concessionaria`
 			}).then(message => {
 				console.log(message);
 			}).catch (err =>{
