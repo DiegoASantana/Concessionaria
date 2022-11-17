@@ -76,11 +76,30 @@ const bcrypt = require('bcrypt');
                     USU_Email: email
                 }).then(()=>{
                     console.log('Usuario Criado com Sucesso!');
+                    enviaEmail(email, usuario, senha);
                 }).catch((erro)=>{
                     console.log("Houve um erro: " +erro);
                 })
             }
         });
+        
+        
+        function enviaEmail(email, usuario, senha){
+			transporter.sendMail({
+				from: "HighStreet Concessionaria <highstreetconcessionaria@hotmail.com>",
+				to: email,
+				subject: "HighStreet Concessionária - Seja Bem-Vindo ao Nosso Sistema!",
+				text: "Aqui estou testando o texto",
+				html: `<strong>Dados para acessar o Sistema:</strong><br>
+                Login de acesso: <strong>${usuario}</strong><br>
+                Sua senha para acesso ao sistema é: <strong>${senha}</strong><br>
+				<a href='https://highstreet-concessionaria.herokuapp.com'>Clique aqui</a> para ser redirecionado ao sistema HighStreet Concessionaria`
+			}).then(message => {
+				console.log(message);
+			}).catch (err =>{
+				console.log(err);
+			})
+		}
 
     });
 
