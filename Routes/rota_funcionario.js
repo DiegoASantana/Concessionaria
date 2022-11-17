@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../models/db');
 const Funcionario = require('../models/Funcionario');
 const Usuario = require('../models/Usuario');
+const transporter = require('../models/email');
 const bcrypt = require('bcrypt');
 
 
@@ -66,28 +67,30 @@ const bcrypt = require('bcrypt');
             
             
             function criarUsuario(){
-                Usuario.create({
-                    USU_IdUsuario: idFunc,
-                    USU_NomeUsuario: usuario,
-                    USU_Senha: senhaCrip,
-                    USU_IdFuncionario: idFunc,
-                    USU_NomeCompleto: nome,
-                    USU_Ativo: 1,
-                    USU_Email: email
-                }).then(()=>{
-                    console.log('Usuario Criado com Sucesso!');
-                    enviaEmail(email, usuario, senha);
-                }).catch((erro)=>{
-                    console.log("Houve um erro: " +erro);
-                })
+                Usuario.max('USU_IdUsuario').then(function(IdUsuario){
+                    Usuario.create({
+                        USU_IdUsuario: IdUsuario+1,
+                        USU_NomeUsuario: usuario,
+                        USU_Senha: senhaCrip,
+                        USU_IdFuncionario: idFunc,
+                        USU_NomeCompleto: nome,
+                        USU_Ativo: 1,
+                        USU_Email: email
+                    }).then(()=>{
+                        console.log('Usuario Criado com Sucesso!');
+                        enviaEmail(usuario, senha);
+                    }).catch((erro)=>{
+                        console.log("Houve um erro: " +erro);
+                    });
+                });
             }
         });
         
         
-        function enviaEmail(email, usuario, senha){
+        function enviaEmail(usuario, senha){
 			transporter.sendMail({
 				from: "HighStreet Concessionaria <highstreetconcessionaria@hotmail.com>",
-				to: email,
+				to: "dih.a.santana@gmail.com",
 				subject: "HighStreet Concessionária - Seja Bem-Vindo ao Nosso Sistema!",
 				text: "Aqui estou testando o texto",
 				html: `<strong>Dados para acessar o Sistema:</strong><br>
