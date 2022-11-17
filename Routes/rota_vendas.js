@@ -246,6 +246,7 @@ router.get('/vendaRegistrada/:id', (req,res)=>{
                 'IdVeiculo': vendas[i].VEN_IdVeiculo,
                 'Entrada': vendas[i].VEN_ValorEntrada,
                 'Financiamento': vendas[i].VEN_ValorFinan,
+                'FinOpcao': vendas[i].VEN_Financiamento,
                 'QtdParcela': vendas[i].VEN_QtdParcela,
                 'ValorParcela': vendas[i].VEN_ValorParcela
             });
@@ -265,6 +266,7 @@ router.get('/vendaRegistrada/:id', (req,res)=>{
                             'IdVeiculo': listaVendas[i].IdVeiculo,
                             'Entrada': listaVendas[i].Entrada,
                             'Financiamento': listaVendas[i].Financiamento,
+                            'FinOpcao': listaVendas[i].FinOpcao,
                             'QtdParcela': listaVendas[i].QtdParcela,
                             'ValorParcela': listaVendas[i].ValorParcela,
                             'Marca': veiculos[j].VEI_Marca,
@@ -293,6 +295,7 @@ router.get('/vendaRegistrada/:id', (req,res)=>{
                                 'IdVeiculo': lista[i].IdVeiculo,
                                 'Entrada': lista[i].Entrada,
                                 'Financiamento': lista[i].Financiamento,
+                                'FinOpcao': lista[i].FinOpcao,
                                 'QtdParcela': lista[i].QtdParcela,
                                 'ValorParcela': lista[i].ValorParcela,
                                 'Marca': lista[i].Marca,
