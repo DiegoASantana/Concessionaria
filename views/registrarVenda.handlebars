@@ -241,7 +241,10 @@
     });
     
     function veiculoP(){
-        let i = document.querySelector('.codVei').value;
+        let idVeiculo = document.querySelector('.codVei').value;
+        var i = veiculo.indexOf(veiculo.filter(function(obj){
+            return obj.IdVeiculo == idVeiculo;
+        })[0]);
         let marca = veiculo[i].Marca;
         let modelo = veiculo[i].Modelo;
         let renavam = veiculo[i].Renavam;
