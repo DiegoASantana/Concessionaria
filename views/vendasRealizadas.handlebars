@@ -1,0 +1,207 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<main id="consultaVeiculo">
+    <div class="caixa">
+        <h1>Vendas Realizadas</h1>
+        
+        <form class="cadastro">
+            <div class="campos">
+                <label>Cód. Veiculo:</label>
+                <input type="number" name="codVei" class="codVei">
+            </div>
+            
+            <div class="tabela" style="overflow: auto; height:250px">
+                
+                <table class = "table">
+                    <thead>
+                        <th style="width: 20px;">Cod. Venda</th>
+                        <th style="width: 20px;">Cod. Veículo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Valor</th>
+                        <th style="width: 300px;">Nome Cliente</th>
+                        <th>Data da Venda</th>
+                    </thead>
+                    
+                    
+                    <tbody class="tbody" >
+                    {{#each vendas}}
+                        <tr onclick="location.href='vendaRegistrada/{{IdVenda}}'">
+                            <td style="text-align: center;">{{IdVenda}}</td>
+                            <td style="text-align: center;">{{IdVeiculo}}</td>
+                            <td style="text-align: center;">{{Marca}}</td>
+                            <td style="text-align: center;">{{Modelo}}</td>
+                            <td style="text-align: center;">{{Placa}}</td>
+                            <td style="text-align: right;">R$ {{Valor}}</td>
+                            <td>{{NomeCliente}}</td>
+                            <td style="text-align: center;">{{DtdVenda}}</td>
+                       </tr>
+                    {{/each}}
+                    </tbody>  
+                </table>
+                
+            </div>
+           
+            <div class = "Botoes">      
+                <input type="submit" value="Consultar" class="consultar" ></input>
+                <input type="submit" value="Cadastrar" class="cadastrar" ></input>
+                <input type="submit" value="Voltar" class="voltar"></input>
+            </div>
+
+        </form>
+    </div>
+</main>
+
+<script>
+    
+    $('.placa').mask("SSS-#S##");
+    
+    //OBJETOS
+        let vendas = []
+        let situacao ='';
+        {{#each vendas}}
+            situacao = '';
+            if({{Situacao}} == 1){
+                situacao = 'Novo'
+            }else{
+                situacao = 'Seminovo'
+            }
+            vendas.push({
+                'IdVenda': {{IdVenda}},
+                'IdFuncionario': {{IdFuncionario}},
+                'DtdVenda': {{DtdVenda}},
+                'IdCliente': {{IdCliente}},
+                'NomeCliente': '{{NomeCliente}}',
+                'Cpf': '{{Cpf}}',
+                'IdVeiculo': {{IdVeiculo}},
+                'Marca': '{{Marca}}',
+                'Modelo': '{{Modelo}}',
+                'Renavam': {{Renavam}},
+                'Ano': {{Ano}},
+                'Situacao': situacao,
+                'Km': {{Km}},
+                'Combustivel': '{{Combustivel}}',
+                'Valor': {{Valor}},
+                'Entrada': {{Entrada}},
+                'Financiamento': {{Financiamento}},
+                'QtdParcela': {{QtdParcela}},
+                'ValorParcela': {{ValorParcela}}
+            })
+        {{/each}}
+    
+    
+    
+    
+    //FUNÇÕES PREENCHE CAMPOS
+
+    function selectMarca(){
+        var marca = document.querySelector('.marca');
+        let optionValue = marca.options[marca.selectedIndex];
+        let value = optionValue.value;
+
+        array2.splice(0, array2.length);
+        for(let i =0; i<array.length;i++){
+            if(array[i].Marca == value){
+                array2.push(array[i].Modelo);   
+            }
+            
+        }
+        limpaSelect();
+        selectModelo();
+        
+    }
+    
+
+    function selectModelo(){
+        const select = document.querySelector('.modelo');
+        for(let i = 0; i<array2.length;i++){
+            select.options[select.options.length] = new Option(array2[i], array2[i])
+        }
+    }
+
+    function limpaSelect(){
+        const select = document.querySelector('.modelo');
+        select.options.length = 1;
+    }
+
+    
+
+    // BOTÕES
+    
+    // BOTÃO CONSULTAR
+
+        var consult = document.querySelector('.consultar');
+        consult.addEventListener("click", function(e){
+            e.preventDefault();
+            $('tbody').remove();
+            busca();
+
+        })
+
+        
+        
+        function busca(){
+            const modelo = document.querySelector('.modelo');
+            const linhasTbody = document.querySelector('.table');
+            
+            
+            let optionValue = modelo.options[modelo.selectedIndex];
+            let value = optionValue.value;
+            
+            for(let i = 0; i<vei.length;i++){
+                if(value == vei[i].Modelo){
+                    var parte1 = `<tr onclick="location.href='../vendaRegistrada/${vei[i].IdVeiculo}'"><td>${vei[i].IdVeiculo}</td>`;
+                    var parte2 = `<td>${vei[i].Marca}</td>`
+                    var parte3 = `<td>${vei[i].Modelo}</td>`
+                    var parte4 = `<td>${vei[i].Renavam}</td>`
+                    var parte5 = `<td>${vei[i].Placa}</td>`
+                    var parte6 = `<td>${vei[i].Cor}</td>`
+                    var parte7 = `<td>${vei[i].Ano}</td>`
+                    var parte8 = `<td>${vei[i].Situacao}</td>`
+                    var parte9 = `<td>${vei[i].Km}</td>`
+                    var parte10 = `<td>${vei[i].Combustivel}</td>`
+                    var parte11 = `<td>${vei[i].Valor}</td>`
+                    
+                    linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8+ parte9+ parte10+ parte11;
+                    linhasTbody.innerHTML += "</tr>";
+                
+                } 
+            }            
+        }
+        
+    
+
+    // BOTÃO CADASTRAR
+
+        var cadastrarVeiculo = document.querySelector('.cadastrar');
+        cadastrarVeiculo.addEventListener("click", (e)=>{
+            e.preventDefault();
+            cadastrarVei();
+        })
+
+        function cadastrarVei(){
+            var cadastrar = document.getElementsByClassName("cadastrarVei");
+            
+            if (cadastrar){
+                location.href = '../estoque/cadastrarVeiculos'
+            }
+        }
+
+
+
+
+    //BOTÃO VOLTAR
+
+        let voltar = document.querySelector('.voltar');
+        voltar.addEventListener("click", (e)=>{
+            e.preventDefault();
+            const idFunc = sessionStorage.getItem('IdFuncionario');
+        
+            window.location.href = '../vendas';
+        })
+
+
+
+</script>
+
+

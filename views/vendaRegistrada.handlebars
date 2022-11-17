@@ -1,0 +1,314 @@
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+<main id="registroVenda">
+    <div class="caixa">
+        <h1>Registro de Venda</h1>
+        <h3 id ="dadosCLiente">Dados do Cliente</h3>
+        <form class="cadastro">
+        {{#each vendas}}
+            <div hidden>
+                <input type="text" name="notaFiscal" class="notaFiscal"/>
+            </div>
+            <div class="campos">
+                <label>Cód. Venda:</label>
+                <input type="number" name="codVenda" class="codVenda" value="{{IdVenda}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Cód. Funcionário:</label>
+                <input type="number" name="codFuncionario" class="codFuncionario" value="{{IdFuncionario}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Data da Compra:</label>
+                <input type="datetime" name="dtdVenda"  class="dtdVenda" value="{{DtdVenda}}" readonly>
+            </div>
+           <div class="campos">
+                <label>Cód. Cliente:</label>
+                <input type="number" style="padding-right: 30px" name="codCliente" class="codCliente" value="{{IdCliente}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Nome do Cliente:</label>
+                <input type="text" name="nmCLiente" class="nmCLiente" value="{{NomeCliente}}" readonly>
+            </div>
+            <div class="campos">
+                <label>CPF:</label>
+                <input type="number" name="CPF" class="docPessoa" value="{{Cpf}}" readonly>
+            </div>
+            <div id = "tema">
+                <h3>Dados do Veículo</h3>
+            </div>
+            <div class="campos">
+                <label>Cód. Veículo:</label>
+                <input type="text" style="padding-right: 30px" name="codVei" class="codVei" value="{{IdVeiculo}}" readonly>
+            </div>
+            
+            <div class="campos">
+                <label>Marca:</label>
+                <input type="text" name = "marca" class="marca" value="{{Marca}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Modelo:</label>
+                <input type="text" name = "modelo" class="modelo" value="{{Modelo}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Renavam:</label>
+                <input type="number" name="renavam" class="renavam" value="{{Renavam}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Placa:</label>
+                <input type="text" name="placa" class="placa" value="{{Placa}}" readonly>
+            </div>
+            <div class="campos">
+                <section class="section">
+                    <label>Cor:</label>
+                    <input type="text" name = "cor" class="cor" value="{{Cor}}" readonly>
+                </section>
+            </div>
+            <div class="campos">
+                <section class="section">
+                    <label>Ano:</label>
+                    <input type="text" name = "ano" class="ano" value="{{Ano}}" readonly>
+                </section>
+            </div>
+            <div class="campos">
+                <label>Situação:</label>
+                <input type="text" name="situacao" class="situacao" value="{{Situacao}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Km:</label>
+                <input type="number" name="km" class="km" value="{{Km}}" readonly>
+            </div>
+            <div class="campos">
+                <label class="comb">Combustível:</label>
+                <input type="text" name = "combustivel" class="combustivel" value="{{Combustivel}}" readonly>
+            </div>
+            <div class="div100">
+                <div class="campos">
+                    <section class="sectionValor">
+                        <label>Valor:</label>
+                        <input type="text" name="valor" class="valor" value="{{Valor}}" readonly>
+                    </section>
+                </div>
+            </div>
+            <div class="campos">
+                <label>Valor Entrada:</label>
+                <input type="text" name="valorEntrada" class="valorEntrada" value="{{Entrada}}" readonly> <!-- onfocus="this.value=''"; -->
+            </div>
+            <div class="campos">
+                <label class="finTxt">Financiamento:</label>
+                <input type="text" name="financiamento" class="finOpcao" value="{{FinOpcao}}" readonly>
+            </div>
+            <div class="div50">
+                <div class="campos">
+                    <label>Valor Financiamento:</label>
+                    <input type="text" name="valorFin" class="valorFin"  value="{{Financiamento}}" readonly>
+                </div>
+            </div>
+            <div class="campos">
+                <label class="entradaTxt">Qtd. Parcelas:</label>
+                <input type="text" name="qtdParcela" class="qtdParcela" value="{{QtdParcela}}" readonly>
+            </div>
+            <div class="campos">
+                <label>Valor Parcelas:</label>
+                <input type="text" name="valorParcela" class="valorParcela" value="{{ValorParcela}}" readonly>
+            </div>
+            {{/each}}                         
+            <div class = "Botoes">
+                <input type="submit" value="Cancelar Venda" class="CancelarVenda"></input>
+                <input type="submit" value="voltar" class="voltar"></input>
+            </div> 
+        
+        </form>
+    </div>
+</main>
+<script>
+
+   
+    //VARIÁVEIS E OBJETOS
+    /*
+    
+
+    var j = ((notaFiscal.length)-1)
+    var nota = ((notaFiscal[j].NotaFiscal)+1);
+    $('.notaFiscal').val(nota);
+
+    $('.codFuncionario').val(idFunc);
+    
+
+    //CAMPOS
+
+    //CAMPO ID VENDA
+    var idVenda = {{venda.length}}+1;
+    $('.codVenda').val(idVenda);
+
+
+    //CAMPO DATA
+    var agora = new Date();
+    var dia = ("0" + agora.getDate()).slice(-2);
+    var mes = ("0" + (agora.getMonth() + 1)).slice(-2);
+    var hora = ("0"+ (agora.getHours())).slice(-2) +":"+ ("0" + (agora.getMinutes())).slice(-2);
+
+    var dataHoje = agora.getFullYear()+"-"+(mes)+"-"+(dia) +" "+(hora);
+    var dataAtual = (`${dia}/${mes}/${agora.getFullYear()} - ${hora}`)
+    $('.dtdVenda').val(dataAtual)
+
+
+    //CAMPO codCliente   
+    var pesqCliente = document.querySelector('#pesq1');
+    pesqCliente.addEventListener("click", (e)=>{
+        e.preventDefault();
+        clienteP();
+    });
+    
+    function clienteP(){
+        let i = document.querySelector('.codCliente').value;
+        $('.nmCLiente').val(cliente[i].NomeCliente)
+        $('.docPessoa').val(cliente[i].CPF)
+    };
+
+    //CAMPO codVei
+    var pesqVeiculo = document.querySelector('#pesq2');
+    pesqVeiculo.addEventListener("click", (e)=>{
+        e.preventDefault();
+        veiculoP();
+    });
+    
+    function veiculoP(){
+        let i = document.querySelector('.codVei').value;
+        let marca = veiculo[i].Marca;
+        let modelo = veiculo[i].Modelo;
+        let renavam = veiculo[i].Renavam;
+        let placa = veiculo[i].Placa;
+        let cor = veiculo[i].Cor;
+        let ano = veiculo[i].Ano;
+        let situacao = veiculo[i].Situacao;
+        let km = veiculo[i].Km;
+        let combustivel = veiculo[i].Combustivel;
+        let valor = parseFloat(veiculo[i].Valor);
+        
+        $('.marca').val(marca);
+        $('.modelo').val(modelo)
+        $('.renavam').val(renavam)
+        $('.placa').val(placa)
+        $('.cor').val(cor)
+        $('.ano').val(ano)
+        if(situacao == 1){
+            $('.sit1').prop("checked", true);
+            $('.sit2').prop("checked", false);
+            
+        }else{
+            $('.sit2').prop("checked", true);
+            $('.sit1').prop("checked", false);
+        };
+        $('.km').val(km);
+        $('.combustivel').val(combustivel);
+        $('.valor').val((valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        
+    }
+
+     //CAMPO ENTRADA
+    function validaEntrada(){
+        $('.finOpcao').removeAttr("disabled");
+        $('.valorFin').removeAttr("disabled");
+        $('.valorEntrada').removeAttr("disabled");
+        if($('.entradaOpcao').val() == 'Sim'){
+            $('.valorEntrada').removeAttr("readonly");
+            $('.valorEntrada').val('');
+        }else{
+            $('.valorEntrada').attr('readonly', 'readonly')
+            $('.valorEntrada').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        }
+    }
+
+    //CAMPO FINANCIAMENTO
+    function validaFinanciamento(){
+        let entrada = document.querySelector('.valorEntrada').value;
+        let valorVeiculo = document.querySelector('.valor').value;
+
+        if($('.finOpcao').val() == 'Sim'){
+            $('.qtdParcela').removeAttr("disabled");
+            $('.qtdParcela').attr('required', 'required');
+            $('.valorParcela').removeAttr("disabled");
+            if(entrada !== 'R$ 0,00'){
+                if(entrada[0] == 'R'){
+                    $('.valorEntrada').val((convertMoeda(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+
+                    let financiamento = convertMoeda(valorVeiculo) - convertMoeda(entrada);
+                    $('.valorFin').val((financiamento).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+
+                }else{
+                    $('.valorEntrada').val((parseFloat(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+
+                    let financiamento = convertMoeda(valorVeiculo) - parseFloat(entrada);
+                    $('.valorFin').val((financiamento).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                }
+            }
+
+        }else{
+            $('.valorFin').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+            $('.qtdParcela').attr('disabled', 'disabled');
+            if(entrada !== 'R$ 0,00'){
+                if(entrada[0] == 'R'){
+                    $('.valorEntrada').val((convertMoeda(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                    $('.valorTotalaPagar').val((convertMoeda(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                }else{
+                    $('.valorEntrada').val((parseFloat(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));  
+                    $('.valorTotalaPagar').val((parseFloat(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                }
+            }
+
+            $('.valorParcela').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+            $('.valorTotalFinanciamento').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+            document.querySelector(".qtdParcela").options.selectedIndex = 0;
+
+            
+        }
+    }
+
+    
+    function convertMoeda(moeda){
+        let p1Moeda = moeda.slice(3,moeda.indexOf('.'));
+        let p2Moeda = moeda.slice(moeda.indexOf('.')+1,moeda.indexOf(','));
+        let valor = p1Moeda+p2Moeda;
+        return parseFloat(valor);
+    }
+
+
+    //CAMPO FINANCIAMENTO
+    function calculaParcela(){
+        let valorFinanciado = convertMoeda($('.valorFin').val());
+        let qtdParcela = $('.qtdParcela').val();
+    
+        let valorParcela = ((((valorFinanciado * 0.01) * qtdParcela) + valorFinanciado) / qtdParcela).toFixed(2);
+        let valorTotalFinanciamento = (valorParcela*qtdParcela).toFixed(2);    
+        let valorTotalaPagar = (parseFloat(valorTotalFinanciamento) + convertMoeda($('.valorEntrada').val())).toFixed(2);
+
+        $('.valorParcela').val(parseFloat(valorParcela).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        $('.valorTotalFinanciamento').val(parseFloat(valorTotalFinanciamento).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        $('.valorTotalaPagar').val(parseFloat(valorTotalaPagar).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+    }
+    
+
+   
+
+    
+
+    */
+
+
+    // BOTÕES
+
+
+    //BOTÃO VOLTAR
+
+    let voltar = document.querySelector('.voltar');
+    voltar.addEventListener("click", (e)=>{
+        e.preventDefault();
+        window.location.href = '../vendasRealizadas';
+    })
+
+
+
+
+
+</script>

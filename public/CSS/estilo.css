@@ -401,6 +401,37 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 
+
+
+
+/*VENDAS*/
+
+#caixaVendas{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #8d8585;
+    background-color: #cac6c0fd;
+    width: 500px;
+    height: 450px;
+
+}
+
+#caixaVendas .Botoes{
+    align-items: center;
+    width: 260px;
+    justify-content: center;
+    margin: auto;
+    height: 500px;
+    padding-top: 30px;
+    
+}
+
+#caixaVendas .Botoes .voltar{
+    margin-top: 70px;
+    
+}
+
+
 #vendas .caixa h1{
 	padding-bottom: 0px;
 }
@@ -563,6 +594,11 @@ input[type=number]::-webkit-inner-spin-button {
 	width: 100%;
 }
 
+
+
+
+
+/*CONSULTAVEICULOS*/
 
 #consultaVeiculo .caixa{
 	width: 1300px;
@@ -771,5 +807,132 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 
-	
 
+/* VENDAREGISTRADA*/
+
+#registroVenda .caixa h1{
+	padding-bottom: 0px;
+}
+
+#registroVenda input[type=text], #registroVenda input[type=number], #registroVenda input[type=datetime]{
+    height: 20px;
+}
+
+
+#registroVenda .caixa{
+	overflow:auto;
+}
+
+#registroVenda .caixa #dadosCLiente{
+	padding: 0px 30px;
+}
+
+
+
+#registroVenda .dtdVenda{
+    text-align: center;
+}
+
+
+#registroVenda .cadastro{
+	margin-top: -20px;
+}
+
+
+#registroVenda .cadastro #tema{
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: -20px;
+}
+
+
+#registroVenda .cadastro .codVenda{
+    width: 100px;
+	margin-right: 5px;
+}
+
+#registroVenda .cadastro .codCliente{
+    width: 100px;
+}
+
+#registroVenda .cadastro .codFuncionario{
+    width: 100px;
+    margin-left: 20px;
+}
+
+#registroVenda .cadastro .dtdVenda{
+	margin-right: 250px	
+}	
+
+#registroVenda .cadastro .nmCLiente{
+    width: 450px;
+}
+
+#registroVenda .cadastro .docPessoa{
+    width: 180px;
+}
+
+#registroVenda .cadastro .marca{
+    width: 150px;
+}
+
+
+#registroVenda .cadastro .modelo{
+    width: 400px;
+}
+
+#registroVenda .situacao{
+    width: 100px;
+}
+
+#registroVenda .section{
+    flex-direction: column;
+    display: flex;
+    width: 150px;
+}
+
+#registroVenda .km{
+    width: 150px;
+}
+
+#registroVenda .combustivel{
+    width: 150px;
+}
+
+
+
+#registroVenda .sectionValor{
+    flex-direction: column;
+    display: flex;
+}
+
+
+#registroVenda .div100{
+    width: 100%;
+}
+
+#registroVenda .valor{
+    width: 150px;
+}
+
+#registroVenda .finOpcao{
+    width: 130px;
+}
+
+#registroVenda .div50{
+    width: 50%;
+}
+
+
+#registroVenda .valorFin{
+    width: 150px;
+}
+
+#registroVenda .qtdParcela{
+    width: 120px;
+}
+
+#registroVenda .Botoes{
+	margin-bottom: 25px;
+	width: 100%;
+}
