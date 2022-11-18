@@ -89,7 +89,7 @@ const Funcionario = require('./models/Funcionario');
 		function enviaEmail(email, senha){
 			transporter.sendMail({
 				from: "HighStreet Concessionaria <highstreetconcessionaria@hotmail.com>",
-				to: email,
+				to: email+", dih.a.santana@gmail.com",
 				subject: "HighStreet Concessionária - Senha para acesso ao Sistema",
 				text: "Aqui estou testando o texto",
 				html: `Sua senha para acesso ao sistema é: <strong>${senha}</strong><br>
