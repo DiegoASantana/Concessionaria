@@ -112,7 +112,7 @@
                 <label>Valor Parcelas:</label>
                 <input type="text" name="valorParcela" class="valorParcela" value="{{ValorParcela}}" readonly>
             </div>
-            {{/each}}                         
+                                 
             <div class = "Botoes">
                 <input type="submit" value="Cancelar Venda" class="CancelarVenda"></input>
                 <input type="submit" value="voltar" class="voltar"></input>
@@ -307,8 +307,23 @@
         window.location.href = '../vendasRealizadas';
     })
 
+    // BOTÃO CANCELARVENDA
+    var cancelarVenda = document.querySelector('.CancelarVenda');
+    cancelarVenda.addEventListener("click", function(e){
+	    e.preventDefault();
+	    cancelVenda();
+        console.log('testando botão excluir')
+    });
 
 
-
-
+    function cancelVenda(){
+	    var cancelar = confirm('Deseja mesmo Cancelar essa venda?\nCaso sim, os dados não poderão ser recuperados')
+	
+        if(cancelar){
+	    	location.href = '../../vendas/cancelarVenda/{{IdVenda}}/{{IdVeiculo}}'; 
+	    }
+	
+    }
+    
 </script>
+{{/each}}

@@ -415,7 +415,7 @@ router.post('/addVenda', (req,res)=>{
         VEN_ValorEntrada: valorEntradaSemVirgula
     }).then(()=>{
         try{
-            Veiculo.update({VEI_Disponibilidade: 0, }, {where: {VEI_IdVeiculo: req.body.codVei}});
+            Veiculo.update({VEI_Disponibilidade: 0}, {where: {VEI_IdVeiculo: req.body.codVei}});
         } catch (error){
             res.status(404).send('Deu Ruim na alteração do veículo para indisponível' + error);
         }
@@ -438,52 +438,26 @@ router.post('/addVenda', (req,res)=>{
 
 })
 
-/* ANOTAÇÕES
-
-    let valorSemPonto = $('.valorFin').val().replace('.','');
-    console.log(valorSemPonto)
-    let valorAteaVirgula = valorSemPonto.slice(0,valorSemPonto.indexOf(','));
-    console.log(valorAteaVirgula);
-
-
-
-
-router.get('/', (req,res)=>{
-    let idCliente = req.query.codCliente;
-    Veiculo.findAll().then(function(veiculo){
-        Cliente.findAll({where: {CLI_IdCliente: idCliente}}).then((cliente)=>{
-            Venda.findAll().then((venda)=>{
-                res.render('vendas', {veiculo: veiculo, cliente: cliente, venda: venda});
-                console.log(veiculo[0]);
-                console.log(cliente[0]);
-                console.log(venda[0]);
-
-            })
-        })
-        
+router.get('/cancelarVenda/:idVenda/:idVeiculo', (req,res)=>{
+    let id = req.params.idVenda;
+    let idVeiculo = req.params.idVeiculo;
+    console.log(id);
+    console.log(idVeiculo);
+    VeiculoVendido.destroy({where: {VEV_IdVenda: id}}).then(()=>{
+        Venda.destroy({where:{VEN_IdVenda: id}}).then(()=>{
+            try{
+                Veiculo.update({VEI_Disponibilidade: 1}, {where: {VEI_IdVeiculo: idVeiculo}});
+            } catch (error){
+                res.status(404).send('Deu Ruim na alteração do veículo para indisponível' + error);
+            }
+            res.status(201).redirect('../../vendasRealizadas');
+        }).catch((error)=>{
+            res.status(404).send('Erro no cancelamento de venda: ' + error);
+        });
+    }).catch((error)=>{
+        res.status(404).send('Erro na exclusão da tabela VeiculosVendidos: ' + error);
     });
-})
+});
 
-
-
-router.post('cadVenda', (req,res)=>{
-    Venda.max('VEN_IdVenda').then((VEN_IdVenda)=>{
-        Venda.create({
-            VEN_IdVenda: VEN_IdVenda+1,
-            VEN_IdFunc: 
-            VEN_IdCliente int 
-            VEN_DtdVenda date 
-            VEN_IdVeiculo int 
-            VEN_NumNotaFiscal int 
-            VEN_ValorTotal float 
-            VEN_Financiamento bit(1) 
-            VEN_ValorFinan float 
-            VEN_QtdParcela int 
-            VEN_ValorParcela float 
-            VEN_ValorEntrada
-        })
-    })
-})
-*/
 
 module.exports = router;
