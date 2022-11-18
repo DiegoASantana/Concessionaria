@@ -26,8 +26,12 @@
     EsqueceuSenha.addEventListener("click", function(e){
 	    e.preventDefault();
         let login = $('#login').val();
-	    confirm("Deseja Enviar sua senha para o e-mail cadastrado?" + login)
-        window.location.href = ('/enviaEmail/'+login)
+        if(login == ''){
+            alert('Preencha o Usuário antes de clicar em Esqueceu sua Senha');
+        }else{
+            confirm("Deseja Enviar sua senha para o e-mail cadastrado?");
+            window.location.href = ('/enviaEmail/'+login);
+        }
     })  
 
 </script>
