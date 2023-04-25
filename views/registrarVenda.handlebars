@@ -278,6 +278,7 @@
 
      //CAMPO ENTRADA
     function validaEntrada(){
+
         $('.finOpcao').removeAttr("disabled");
         $('.valorFin').removeAttr("disabled");
         $('.valorEntrada').removeAttr("disabled");
@@ -295,6 +296,7 @@
         let entrada = document.querySelector('.valorEntrada').value;
         let valorVeiculo = document.querySelector('.valor').value;
 
+      
         if($('.finOpcao').val() == 'Sim'){
             $('.qtdParcela').removeAttr("disabled");
             $('.qtdParcela').attr('required', 'required');
@@ -326,11 +328,15 @@
                     $('.valorTotalaPagar').val((parseFloat(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 }
             }
-
+        
             $('.valorParcela').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
             $('.valorTotalFinanciamento').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
             document.querySelector(".qtdParcela").options.selectedIndex = 0;
 
+            if(convertMoeda($('.valorEntrada').val()) < convertMoeda($('.valor').val())){
+            alert("Você só pode escolhe a opção 'NÃO' para o Finanaicamento, caso o valor da entrada seja igual o Valor TOTAL do veículo")
+            $('.finOpcao').val('Sim')
+            }
             
         }
     }

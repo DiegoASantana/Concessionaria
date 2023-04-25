@@ -157,7 +157,7 @@ router.post('/alterarFuncionario/:id', (req,res)=>{
             FUN_Sexo: dados.sexo,
             FUN_IdCargo: dados.cargo
         }, {where: {FUN_IdFuncionario: dados.codigo}})
-        res.redirect('../../funcionarios/'+dados.codigo);
+        res.redirect('../../funcionarios/'+dados.codigo+ '?reload=true');
     } catch(error){
         res.status(404).send('Deu Ruim...' + error);
     }

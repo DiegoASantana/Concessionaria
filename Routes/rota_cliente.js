@@ -84,7 +84,7 @@ router.post('/alterarCliente/:id', (req,res)=>{
             CLI_Telefone: dados.telefone,
             CLI_Email: dados.email
         }, {where: {CLI_IdCliente: dados.codigo}})
-        res.redirect('../../clientes/'+dados.codigo);
+        res.redirect('../../clientes/'+dados.codigo+ '?reload=true');
     } catch(error){
         res.status(404).send('Deu Ruim...' + error);
     }

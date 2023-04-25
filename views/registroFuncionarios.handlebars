@@ -144,7 +144,7 @@
 
         for(let i = 0; i< qtdFuncionario; i++){
             let nome = (funcionarios[i].Nome).toUpperCase();
-            if(codFuncionario == funcionarios[i].IdFuncionario || nomeFuncionario == nome.substring(0, nome.indexOf(' ')) || cpfFuncionario == funcionarios[i].cpf){
+            if(codFuncionario == funcionarios[i].IdFuncionario || (nomeFuncionario.trim() != "" && nome.includes(nomeFuncionario.trim())) || cpfFuncionario == funcionarios[i].cpf){
                     var parte1 = `<tr onclick="location.href='../funcionarios/${funcionarios[i].IdFuncionario}'"><td>${funcionarios[i].IdFuncionario}</td>`;
                     var parte2 = `<td>${funcionarios[i].Nome}</td>`
                     var parte3 = `<td>${funcionarios[i].Cargo}</td>`

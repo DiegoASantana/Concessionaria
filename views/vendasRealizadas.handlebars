@@ -5,8 +5,8 @@
         
         <form class="cadastro">
             <div class="campos">
-                <label>Cód. Veiculo:</label>
-                <input type="number" name="codVei" class="codVei">
+                <label>Cód. Venda:</label>
+                <input type="number" name="idvenda" class="codVei">
             </div>
             
             <div class="tabela" style="overflow: auto; height:250px">
@@ -44,7 +44,6 @@
            
             <div class = "Botoes">      
                 <input type="submit" value="Consultar" class="consultar" ></input>
-                <input type="submit" value="Cadastrar" class="cadastrar" ></input>
                 <input type="submit" value="Voltar" class="voltar"></input>
             </div>
 
@@ -88,41 +87,16 @@
                 'ValorParcela': {{ValorParcela}}
             })
         {{/each}}
+
+        console.log(vendas)
     
     
     
     
     //FUNÇÕES PREENCHE CAMPOS
 
-    function selectMarca(){
-        var marca = document.querySelector('.marca');
-        let optionValue = marca.options[marca.selectedIndex];
-        let value = optionValue.value;
-
-        array2.splice(0, array2.length);
-        for(let i =0; i<array.length;i++){
-            if(array[i].Marca == value){
-                array2.push(array[i].Modelo);   
-            }
-            
-        }
-        limpaSelect();
-        selectModelo();
-        
-    }
+   
     
-
-    function selectModelo(){
-        const select = document.querySelector('.modelo');
-        for(let i = 0; i<array2.length;i++){
-            select.options[select.options.length] = new Option(array2[i], array2[i])
-        }
-    }
-
-    function limpaSelect(){
-        const select = document.querySelector('.modelo');
-        select.options.length = 1;
-    }
 
     
 
@@ -141,52 +115,28 @@
         
         
         function busca(){
-            const modelo = document.querySelector('.modelo');
+            const venda = $('.codVei').val();
             const linhasTbody = document.querySelector('.table');
             
             
-            let optionValue = modelo.options[modelo.selectedIndex];
-            let value = optionValue.value;
-            
-            for(let i = 0; i<vei.length;i++){
-                if(value == vei[i].Modelo){
-                    var parte1 = `<tr onclick="location.href='../vendaRegistrada/${vei[i].IdVeiculo}'"><td>${vei[i].IdVeiculo}</td>`;
-                    var parte2 = `<td>${vei[i].Marca}</td>`
-                    var parte3 = `<td>${vei[i].Modelo}</td>`
-                    var parte4 = `<td>${vei[i].Renavam}</td>`
-                    var parte5 = `<td>${vei[i].Placa}</td>`
-                    var parte6 = `<td>${vei[i].Cor}</td>`
-                    var parte7 = `<td>${vei[i].Ano}</td>`
-                    var parte8 = `<td>${vei[i].Situacao}</td>`
-                    var parte9 = `<td>${vei[i].Km}</td>`
-                    var parte10 = `<td>${vei[i].Combustivel}</td>`
-                    var parte11 = `<td>${vei[i].Valor}</td>`
+            for(let i = 0; i< vendas.length;i++){
+                if(venda == vendas[i].IdVenda){
+                    var parte1 = `<tr onclick="location.href='../vendaRegistrada/${vendas[i].IdVenda}'"><td>${vendas[i].IdVenda}</td>`;
+                    var parte2 = `<td>${vendas[i].IdVeiculo}</td>`
+                    var parte3 = `<td>${vendas[i].Marca}</td>`
+                    var parte4 = `<td>${vendas[i].Modelo}</td>`
+                    var parte5 = `<td>${vendas[i].Placa}</td>`
+                    var parte6 = `<td>${vendas[i].Valor}</td>`
+                    var parte7 = `<td>${vendas[i].NomeCliente}</td>`
+                    var parte8 = `<td>${vendas[i].DtdVenda}</td>`
                     
-                    linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8+ parte9+ parte10+ parte11;
+                    linhasTbody.innerHTML += parte1+ parte2+ parte3+ parte4+ parte5+ parte6+ parte7+ parte8;
                     linhasTbody.innerHTML += "</tr>";
                 
                 } 
             }            
         }
         
-    
-
-    // BOTÃO CADASTRAR
-
-        var cadastrarVeiculo = document.querySelector('.cadastrar');
-        cadastrarVeiculo.addEventListener("click", (e)=>{
-            e.preventDefault();
-            cadastrarVei();
-        })
-
-        function cadastrarVei(){
-            var cadastrar = document.getElementsByClassName("cadastrarVei");
-            
-            if (cadastrar){
-                location.href = '../estoque/cadastrarVeiculos'
-            }
-        }
-
 
 
 

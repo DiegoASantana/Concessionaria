@@ -58,6 +58,13 @@
 <script>
 
 
+    if (window.location.href.includes('reload=true')) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('reload');
+        location.replace(url.toString());   
+    }
+
+
      // BOTÃO EXCLUIR
     var excluir = document.querySelector('.excluir');
     excluir.addEventListener("click", function(e){
@@ -133,6 +140,7 @@
                 document.querySelector(".cadastro").action ='alterarCliente/:id';
                 document.querySelector(".cadastro").method ='POST';
             }
+            
         })
 
         var cancelAltVei = document.querySelector("#cancelarAlt");
