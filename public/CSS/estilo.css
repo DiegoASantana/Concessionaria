@@ -113,6 +113,7 @@ body form a{
     height: 50px;
 	font-size: 16pt;
 	font-weight:bolder;
+    cursor: pointer;
 }
 
 #index .Botoes{

@@ -35,7 +35,6 @@ const Funcionario = require('./models/Funcionario');
 
 
 //Rotas
-
 	
 	app.get('/home', (req,res)=>{
 		let user = req.query.user;
