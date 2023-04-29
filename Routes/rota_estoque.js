@@ -6,17 +6,11 @@ const Modelo = require('../models/Modelo');
 
 
 
-
-
-
-
-
 router.get('/consultarVeiculos', (req, res) =>{
     Veiculo.findAll({where: {VEI_disponibilidade: 1}}).then(function(veiculos){ // TUDO QUE ESTÁ DENTRO DO findAll() SÓ PRECISA COLCOAR QUANDO QUISER MUDAR A ORDEM QUE SERÁ SALVO NA VARIÁVEL POST. NESTE CASO ELE APRESENTARÁ EM ORDEM DECRESCENTE PELO ID
         Marca.findAll().then((marcas)=>{
             Modelo.findAll().then((modelos)=>{
-                res.render('consultarVeiculos', {veiculos: veiculos, marcas: marcas, modelos: modelos});			
-                console.log(veiculos[0]);
+                res.render('consultarVeiculos', {veiculos: veiculos, marcas: marcas, modelos: modelos});
             })
         });
     })
@@ -33,20 +27,11 @@ router.get('/cadastrarVeiculos', (req, res) =>{
 });
 
 
-/*
-router.get('/consultarVeiculos', (req, res) =>{
-    Veiculo.findAll().then(function(veiculos){ // TUDO QUE ESTÁ DENTRO DO findAll() SÓ PRECISA COLCOAR QUANDO QUISER MUDAR A ORDEM QUE SERÁ SALVO NA VARIÁVEL POST. NESTE CASO ELE APRESENTARÁ EM ORDEM DECRESCENTE PELO ID
-    res.render('consultarVeiculos', {veiculos: veiculos});			
-    console.log(veiculos[0]);
-    })
-});*/
-
 router.get('/:id', (req,res)=>{
     let id = req.params.id;
 
     Veiculo.findAll({where: {'VEI_IdVeiculo': id}}).then(function(veiculos){ // TUDO QUE ESTÁ DENTRO DO findAll() SÓ PRECISA COLCOAR QUANDO QUISER MUDAR A ORDEM QUE SERÁ SALVO NA VARIÁVEL POST. NESTE CASO ELE APRESENTARÁ EM ORDEM DECRESCENTE PELO ID
         res.render('estoque', {veiculos: veiculos});			
-        console.log(veiculos);
     })
 
 })
@@ -150,7 +135,6 @@ router.get('/consultarVeiculos/:codVei', (req,res)=>{
     Veiculo.findAll({where: {VEI_IdVeiculo: dados.codVei}
     }).then((veiculos)=>{
         res.render('consultarVeiculos', {veiculos: veiculos});
-        console.log(veiculos[0]);
     }).catch((error)=>{
         res.send("Deu Ruim" + error);
     });

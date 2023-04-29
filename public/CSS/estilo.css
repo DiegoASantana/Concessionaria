@@ -45,7 +45,7 @@ body{
 
 
 body form a{
-    margin-left: 160px;
+    display: block;
     text-decoration: none;
     text-align: right;
     margin-top: 10px;
@@ -100,28 +100,31 @@ body form a{
     margin-left: 40px;
 }
 
+
   #error-box {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    border: 2px solid #161212;
+    border: 2px solid #222222;
     background-color: #cac6c0fd;
+    border-radius: 20px;
     display: none;
-    border-radius: 10px;
   }
   
   #error-message {
     margin: 0 0 10px;
     font-weight: bold;
-    color: rgb(192, 4, 4);
+    color:#7c0e04
   }
   
   #error-ok {
     display: block;
     margin: 0 auto;
   }
+
+
 
 .Botoes input[type=submit], .Botoes a, #BotoesBaixo a{
 	border: none;
@@ -960,5 +963,3 @@ input[type=number]::-webkit-inner-spin-button {
 	margin-bottom: 25px;
 	width: 100%;
 }
-
-

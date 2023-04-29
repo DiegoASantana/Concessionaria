@@ -15,17 +15,7 @@ router.get('/', (req, res) =>{
         res.render('index');
     }
 });
-/*
-router.get('/:user', (req, res) =>{
 
-    if(req.query.user == 5){
-        res.redirect('home')
-
-    }else{
-        res.render('index');
-    }
-});
-*/
 
 router.post('/', (req,res)=>{
     console.log(req.body)

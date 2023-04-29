@@ -5,9 +5,7 @@ const Veiculo = require('../models/Veiculo');
 const Cliente = require('../models/Cliente');
 const VeiculoVendido = require ('../models/VeiculoVendido');
 
-//Veiculo.hasMany(Venda)
-//Venda.belongsTo(Veiculo,{foreignKey: 'VEN_IdVeiculo'});
-//Venda.belongsTo(Cliente, {foreignKey: 'VEN_IdCliente'});
+
 
 router.get('/', (req,res)=>{
     res.render('vendas');
@@ -132,49 +130,6 @@ router.get('/vendasRealizadas', (req,res)=>{
 
 
 
-
-
-
-
-
-
-
-/*
-router.get('/vendasRealizadas', (req,res)=>{
-    Venda.findAll({
-        attributes: ['VEN_IdVenda'],
-        include: [{model: Veiculo, attributes: ['VEI_Modelo'], required: false}],            
-        where:{VEN_IdVenda: 9}
-    }).then((venda)=>{
-        console.log(JSON.stringify(venda, null, 2))
-        res.render('vendasRealizadas',{vendas: venda})
-        let idVeiculoVendido = []
-        for(let i =0; i<vendas.length; i++){
-            idVeiculoVendido.push(vendas[i].VEV_IdVeiculo)
-        }
-        let idCliente = []
-        for(let i =0; i<vendas.length; i++){
-            idVeiculoVendido.push(vendas[i].idCliente)
-        }
-
-        console.log(idVeiculoVendido);
-        Veiculo.findAll({where:{VEI_IdVeiculo: idVeiculoVendido}}).then((veiculos)=>{
-            Cliente.findAll({where: {CLI_IdCliente: idCliente}}).then((clientes)=>{
-                res.render('vendasRealizadas', {vendas: vendas, veiculos: veiculos, clientes: clientes});
-            })
-        })
-    })
-
-})
-
-
-
-
-
-
-
-
-
 router.get('/vendasRealizadas', (req,res)=>{
     VeiculoVendido.findAll().then((vendas)=>{ 
 
@@ -185,11 +140,8 @@ router.get('/vendasRealizadas', (req,res)=>{
             console.log(idVeiculoVendido);
 
         Veiculo.findAll({where: {VEI_IdVeiculo: idVeiculoVendido}}).then(function(veiculo){
-          //  console.log(veiculo[0]);
             Cliente.findAll().then((cliente)=>{
-               // console.log(cliente[0]);
                 Venda.findAll().then((venda)=>{
-                   // console.log(venda[0]);
                     let listaVendas = []
                     for(let i=0;i<venda.length;i++){
                         listaVendas.push({
@@ -216,14 +168,13 @@ router.get('/vendasRealizadas', (req,res)=>{
                             'ValorParcela': venda[i].VEN_ValorParcela
                         })
                     }
-                    //console.log(listaVendas)
                     res.render('vendasRealizadas', {vendas: listaVendas});
                 })
             })
             
         });
     })
-})*/
+});
 
 router.get('/vendaRegistrada/:id', (req,res)=>{
     let idVenda = req.params.id
@@ -314,10 +265,6 @@ router.get('/vendaRegistrada/:id', (req,res)=>{
                         }
                     }
                 }
-
-                
-                console.log(lista)
-                console.log(lista2)
                 res.render('vendaRegistrada', {vendas: lista2});
             });
         });   
@@ -339,16 +286,11 @@ router.post('/addVenda', (req,res)=>{
     var hora = ("0"+ (agora.getHours())).slice(-2) +":"+ ("0" + (agora.getMinutes())).slice(-2);
 
     var dataHoje = agora.getFullYear()+"-"+(mes)+"-"+(dia) +" "+(hora);
-    console.log(dataHoje);
 
     //ValorTotal
     let valor = (req.body.valor).slice(3);
     let valorTotalSemPonto = valor.replace('.','');
     let valorTotalSemVirgula = valorTotalSemPonto.replace(',','.');
-    console.log(valor)
-    console.log(valorTotalSemPonto)
-    console.log(valorTotalSemVirgula)
-
 
     //valorEntrada
     let entradaOpcao = req.body.entradaOpcao;
@@ -379,7 +321,6 @@ router.post('/addVenda', (req,res)=>{
         valorFinanciamentoSemPonto = valorFin.replace('.','');
         valorFinanciamentoSemVirgula = valorFinanciamentoSemPonto.replace(',','.');
     }
-    console.log(finOpcao);
 
     
 
@@ -398,8 +339,6 @@ router.post('/addVenda', (req,res)=>{
 
 
     let nota = req.body.notaFiscal;
-    console.log(nota);
-
 
     Venda.create({
         VEN_IdVenda: idVenda,

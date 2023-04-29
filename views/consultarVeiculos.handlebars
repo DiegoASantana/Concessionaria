@@ -1,4 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 <main id="consultaVeiculo">
     <div class="caixa">
         <h1>Estoque</h1>
@@ -49,12 +48,17 @@
                         <tr onclick="location.href='../estoque/{{VEI_IdVeiculo}}'">
                             <td  style="text-align: center; width: 20px;">{{VEI_IdVeiculo}}</td>
                             <td>{{VEI_Marca}}</td>
-                            <td style="width: auto;">{{VEI_Modelo}}</td>
+                            <td style="width: 350px;">{{VEI_Modelo}}</td>
                             <td>{{VEI_NumRenavam}}</td>
-                            <td style="width: 100px;">{{VEI_Placa}}</td>
+                            <td style="text-align: center; width: 80px;">{{VEI_Placa}}</td>
                             <td>{{VEI_Cor}}</td>
-                            <td style="text-align: center; width: 50px;">{{VEI_Ano}}</td>
-                            <td style="text-align: center;">{{VEI_Novo}}</td>
+                            <td style="text-align: center; width: 45px;">{{VEI_Ano}}</td>
+                            <td style="text-align: center; width: 80px;">
+                                {{#if VEI_Novo}}
+                                    Novo
+                                {{else}}
+                                    Semi Novo
+                                {{/if}}</td>
                             <td style="text-align: center;">{{VEI_Km}}</td>
                             <td>{{VEI_Combustivel}}</td>
                             <td style="width: 80px; text-align: right;">R$ {{VEI_Valor}}</td>
@@ -95,11 +99,6 @@
         let array2 =[]
         let vei = [];
 
-        /* tentei formatar o valor do km na tabela
-        function formatKM(valor){
-            return valor.toLocaleString('pt-BR');
-        }*/
-
 
         {{#each modelos}}
             array.push({'Marca': {{MOD_IdMarca}}, 'Modelo':'{{MOD_Modelo}}'})
@@ -120,18 +119,6 @@
         {{/each}}
 
         
-        
-        /*
-        var confirmarAlt = document.querySelector(".consultar") ;
-        confirmarAlt.addEventListener("click", function(e){
-            let id = document.querySelector('.codVei').value;
-            var confirmar = confirm("Deseja mesmo realizar essa consulta?");
-            if(confirmar){
-                document.querySelector(".cadastro").action ="/estoque/consultarVeiculos/res";
-                document.querySelector(".cadastro").method ='GET';
-            }
-        })
-        */
     
         function selectMarca(){
             var marca = document.querySelector('.marca');
@@ -201,24 +188,6 @@
         })
 
        
-        /*
-        function removeLinhas(){
-            const linhasTbody = document.querySelector('.table');
-
-            const linhas = document.querySelector('.tbody');
-            //linhas.style.display = 'none'
-            let qtdlinhas = linhasTbody.rows.length;
-            let qtdlinhas0 = qtdlinhas
-            
-            while(qtdlinhas0 > 0){
-                linhas.style.display = 'none';
-                qtdlinhas0 --;
-                console.log(qtdlinhas0)
-            }
-            
-        }
-        */
-        
         
         function busca(){
             const modelo = document.querySelector('.modelo');
@@ -250,13 +219,8 @@
                 
                 }
                 
-                
             }
-            
-                
-            
-            
-            
+ 
         }
             
        
