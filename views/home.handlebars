@@ -20,10 +20,10 @@
 
 <script>
     {{#each result}}
-    let idcargo = {{FUN_IdCargo}};
-    let idfunc = {{FUN_IdFuncionario}};
-    sessionStorage.setItem("IdCargo", idcargo)
-    sessionStorage.setItem("IdFuncionario", idfunc)
+        let idcargo = {{FUN_IdCargo}};
+        let idfunc = {{FUN_IdFuncionario}};
+        sessionStorage.setItem("IdCargo", idcargo)
+        sessionStorage.setItem("IdFuncionario", idfunc)
     {{/each}}
     
     let dadosCargo = sessionStorage.getItem('IdCargo');

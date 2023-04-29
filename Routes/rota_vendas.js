@@ -352,10 +352,11 @@ router.post('/addVenda', (req,res)=>{
 
     //valorEntrada
     let entradaOpcao = req.body.entradaOpcao;
-    let valorEntrada = (req.body.valorEntrada).slice(3);
+    
     let valorEntradaSemPonto = 0;
     let valorEntradaSemVirgula = 0;
     if(entradaOpcao == "Sim"){
+        let valorEntrada = (req.body.valorEntrada).slice(3);
         valorEntradaSemPonto = valorEntrada.replace('.','');
         valorEntradaSemVirgula = valorEntradaSemPonto.replace(',','.');
 

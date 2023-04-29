@@ -17,10 +17,18 @@
             <button type="submit" value="Logar" class="logar">Logar</button>
         </form>
     </div>
+    <div id="error-box">
+        <p id="error-message"></p>
+        <button id="error-ok" onclick="closeErrorBox()">OK</button>
+    </div>
 </main>
 <!--<script src="Js/script.js"></script>-->
 
 <script>
+
+    function closeErrorBox(){
+        document.querySelector('#error-box').style.display = "none"
+    }
 
     let EsqueceuSenha = document.querySelector('#EsqueceuSenha');
     EsqueceuSenha.addEventListener("click", function(e){
@@ -29,9 +37,44 @@
         if(login == ''){
             alert('Preencha o Usuário antes de clicar em Esqueceu sua Senha');
         }else{
-            confirm("Deseja Enviar sua senha para o e-mail cadastrado?");
-            window.location.href = ('/enviaEmail/'+login);
+            var enviar = confirm("Deseja Enviar sua senha para o e-mail cadastrado?");
+            if(enviar){
+                window.location.href = ('/enviaEmail/'+login);
+            }
         }
     })  
+
+    const form = document.querySelector('form');
+    const errorMessage = document.getElementById('error-message');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText)
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.message) {
+                    errorMessage.innerText = response.message;
+                    document.querySelector('#error-box').style.display = "block ";
+                    } else {
+                        window.location.href = response.redirect;
+                    }
+                } else {
+                console.error('Error: ' + xhr.status);
+            }
+            }
+        };
+
+        xhr.open('POST', '/');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        const formData = new FormData(form);
+        xhr.send(new URLSearchParams(formData).toString());
+    });
+    
+   
 
 </script>

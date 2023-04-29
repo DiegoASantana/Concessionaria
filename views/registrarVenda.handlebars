@@ -102,7 +102,7 @@
             </div>
             <div class="campos">
                 <label class="entradaTxt">Entrada:</label>
-                <select name = "entradaOpcao" class="entradaOpcao" onchange="validaEntrada()" required>
+                <select name = "entradaOpcao" class="entradaOpcao" onchange="validaEntrada()" required disabled>
                     <option disabled selected>Selecione</option>
                     <option value="Sim">Sim</option>
                     <option value="Não">Não</option>
@@ -147,7 +147,7 @@
                 <input type="text" name="valorTotalaPagar" class="valorTotalaPagar" value="" disabled>
             </div>
             <div class = "Botoes">
-                <input type="submit" value="Cadastrar" class="cadastrar"></input>
+                <input type="submit" value="Cadastrar" class="cadastrar" onclick="cadastrar()"></input>
                 <input type="submit" value="Cancelar" class="cancelar"></input>
             </div>   
         </form>
@@ -273,6 +273,7 @@
         $('.km').val(km);
         $('.combustivel').val(combustivel);
         $('.valor').val((valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        $('.entradaOpcao').removeAttr("disabled");
         
     }
 
@@ -285,9 +286,17 @@
         if($('.entradaOpcao').val() == 'Sim'){
             $('.valorEntrada').removeAttr("readonly");
             $('.valorEntrada').val('');
+            $('.valorFin').val('');
+            const opcaofin = document.querySelector('.finOpcao');
+            opcaofin.options.selectedIndex  = 0;
         }else{
-            $('.valorEntrada').attr('readonly', 'readonly')
+            $('.valorEntrada').attr('disabled', 'disabled')
             $('.valorEntrada').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+            $('.finOpcao').val('Sim');
+            $('.finOpcao').attr('readonly', 'readonly')
+            $('.valorFin').val($('.valor').val());
+            $('.qtdParcela').attr('required','required')
+            $('.qtdParcela').removeAttr("disabled")
         }
     }
 
@@ -319,6 +328,7 @@
         }else{
             $('.valorFin').val((0.00).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
             $('.qtdParcela').attr('disabled', 'disabled');
+            $('.qtdParcela').attr('disabled', 'disabled');
             if(entrada !== 'R$ 0,00'){
                 if(entrada[0] == 'R'){
                     $('.valorEntrada').val((convertMoeda(entrada)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
@@ -334,8 +344,9 @@
             document.querySelector(".qtdParcela").options.selectedIndex = 0;
 
             if(convertMoeda($('.valorEntrada').val()) < convertMoeda($('.valor').val())){
-            alert("Você só pode escolhe a opção 'NÃO' para o Finanaicamento, caso o valor da entrada seja igual o Valor TOTAL do veículo")
+            alert("Você só pode escolhe a opção 'NÃO' para o Finaciamento, caso o valor da entrada seja igual o Valor TOTAL do veículo")
             $('.finOpcao').val('Sim')
+            validaFinanciamento()
             }
             
         }
@@ -352,6 +363,7 @@
 
     //CAMPO FINANCIAMENTO
     function calculaParcela(){
+
         let valorFinanciado = convertMoeda($('.valorFin').val());
         let qtdParcela = $('.qtdParcela').val();
     
@@ -384,6 +396,15 @@
         window.location.href = '../vendas';
     })
 
+    function cadastrar(){
+        let qtdParcela = $('.qtdParcela').val();
+        let opcaoFin = $('.finOpcao').val();
+        if(opcaoFin == 'Sim' && qtdParcela < 12){
+            Alert('Você deve Selecionar a Quantidade De Parcelas!')
+        }
+    }
+        
+    
 
 
 

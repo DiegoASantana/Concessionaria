@@ -64,6 +64,7 @@ const Funcionario = require('./models/Funcionario');
 		let usuario = req.params.login
 		Usuario.findAll({where: {USU_NomeUsuario: usuario}}).then((result)=>{
 			if(result.length > 0){
+				console.log(result[0].USU_Ativo)
 				trazSenha(result[0].USU_IdFuncionario);
 			}else{
 				console.log('Usuário não encontrado!')

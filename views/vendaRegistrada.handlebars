@@ -308,7 +308,15 @@
     })
 
     // BOTÃO CANCELARVENDA
+    var idCargo =  sessionStorage.getItem('IdCargo');
+
+
     var cancelarVenda = document.querySelector('.CancelarVenda');
+    if(idCargo != 4){
+        cancelarVenda.disabled = true;
+        cancelVenda.backgroundColor = '#EA8419';
+    }
+
     cancelarVenda.addEventListener("click", function(e){
 	    e.preventDefault();
 	    cancelVenda();
@@ -317,12 +325,20 @@
 
 
     function cancelVenda(){
-	    var cancelar = confirm('Deseja mesmo Cancelar essa venda?\nCaso sim, os dados não poderão ser recuperados')
-	
-        if(cancelar){
-	    	location.href = '../../vendas/cancelarVenda/{{IdVenda}}/{{IdVeiculo}}'; 
-	    }
-	
+        if(idCargo == 4){
+            var senha = prompt("Digite a senha para prosseguir com o cancelamento: ")
+            if (senha == '12345'){
+                var cancelar = confirm('Deseja mesmo Cancelar essa venda?\nCaso sim, os dados não poderão ser recuperados')
+            
+                if(cancelar){
+                    location.href = '../../vendas/cancelarVenda/{{IdVenda}}/{{IdVeiculo}}'; 
+                }
+            }else{
+                alert('Senha Incorreta')
+            }
+        }else{
+            alert('Você não pode Processguir com essa solicitação')
+        }
     }
     
 </script>
